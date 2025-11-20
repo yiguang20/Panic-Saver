@@ -1,0 +1,78 @@
+{
+  "@@locale": "fr",
+  
+  "appTitle": "Soulagement de la Panique",
+  "langToggle": "中文 / EN",
+  "navCrisis": "CRISE",
+  "navPractice": "PRATIQUE",
+  "hintDoubleTap": "Appuyez deux fois sur l'écran pour la Lettre d'Aide",
+
+  "step1Title": "Préparation",
+  "step1Text": "Si possible, mettez vos écouteurs. Trouvez un coin tranquille. Vous entrez dans un espace sûr.",
+  "step1Sub": "Créez une barrière physique.",
+  "step1Btn": "Je suis prêt",
+
+  "step2Title": "Arrêtez et Pausez",
+  "step2Text": "Arrêtez ce que vous faites. Asseyez-vous. Sentez la chaise qui vous soutient. Vous êtes en sécurité.",
+  "step2Sub": "\"Je suis mal à l'aise, mais je ne suis pas en danger.\"",
+  "step2Btn": "J'ai fait une pause",
+
+  "step3Title": "Respirez avec Moi",
+  "step3Text": "Concentrez-vous sur le cercle. Inspirez pendant qu'il se dilate. Expirez pendant qu'il se contracte. Laissez votre ventre se soulever.",
+  "step3Sub": "Rythme 4-7-8",
+  "step3Btn": "Je respire...",
+
+  "step4Title": "Ancrage",
+  "step4Text": "Regardez autour de vous. Trouvez 3 couleurs distinctes. Nommez-les à voix haute. Ramenez votre esprit à la réalité.",
+  "step4Sub": "Vous êtes ici, maintenant.",
+  "step4Btn": "Je les vois",
+
+  "step5Title": "Parlez Vrai",
+  "step5Text": "Votre cœur bat vite à cause de l'adrénaline. C'est une fausse alarme de votre corps.",
+  "step5Sub": "\"Cette sensation passera en quelques minutes.\"",
+  "step5Btn": "Je comprends",
+
+  "step6Title": "Flottement",
+  "step6Text": "Ne combattez pas la sensation. Imaginez que vous êtes une plume flottant sur une vague. Laissez la vague vous porter.",
+  "step6Sub": "L'acceptation dissout la tension.",
+  "step6Btn": "Je flotte",
+
+  "step7Title": "Soyez Doux",
+  "step7Text": "Ne vous blâmez pas. Vous gérez ce moment difficile avec beaucoup de courage.",
+  "step7Sub": "\"Je m'aime et je m'accepte.\"",
+  "step7Btn": "J'essaie",
+
+  "step8Title": "Attente",
+  "step8Text": "Le pic est passé. Laissez le temps passer. Ne vous précipitez pas pour vous sentir 'normal' immédiatement.",
+  "step8Sub": "La patience est la clé.",
+  "step8Btn": "J'attends...",
+
+  "step9Title": "Retour",
+  "step9Text": "Vous avez surmonté la vague. Vous êtes fort. Prenez une gorgée d'eau quand vous êtes prêt.",
+  "step9Sub": "Bon retour.",
+  "step9Btn": "Recommencer",
+
+  "helpHeading": "J'ai Besoin d'Aide",
+  "helpSubheading": "VEUILLEZ LIRE CECI",
+  "helpP1": "Je fais une Crise de Panique. Je ne peux pas parler clairement maintenant.",
+  "helpP2": "Je ne suis PAS en train de mourir.",
+  "helpP3": "Je ne suis PAS dangereux.",
+  "helpP4": "S'il vous plaît, n'appelez pas d'ambulance sauf si je le demande.",
+  "helpP5": "S'il vous plaît, restez simplement assis avec moi calmement jusqu'à ce que ma respiration ralentisse. Merci.",
+  "helpBack": "Retour au Guide",
+
+  "pracTitle": "Pratique Quotidienne",
+  "pracSub": "Construisez la résilience avant la tempête.",
+  
+  "prac1Title": "Respiration Profonde",
+  "prac1Desc": "Respiration abdominale ",
+  
+  "prac2Title": "Mouvement",
+  "prac2Desc": "Libérer l'énergie ",
+  
+  "prac3Title": "Dialogue Intérieur",
+  "prac3Desc": "Logique positive ",
+  
+  "prac4Title": "Acceptation",
+  "prac4Desc": "Technique de flottement "
+}

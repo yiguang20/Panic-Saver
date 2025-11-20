@@ -1,0 +1,78 @@
+{
+  "@@locale": "de",
+  
+  "appTitle": "Panik-Linderung",
+  "langToggle": "中文 / EN",
+  "navCrisis": "KRISE",
+  "navPractice": "ÜBUNG",
+  "hintDoubleTap": "Tippen Sie zweimal auf den Bildschirm für den Hilfebrief",
+
+  "step1Title": "Vorbereitung",
+  "step1Text": "Wenn möglich, setzen Sie Ihre Kopfhörer auf. Finden Sie eine ruhige Ecke. Sie betreten einen sicheren Raum.",
+  "step1Sub": "Schaffen Sie eine physische Barriere.",
+  "step1Btn": "Ich bin bereit",
+
+  "step2Title": "Stoppen und Pausieren",
+  "step2Text": "Hören Sie auf, was Sie gerade tun. Setzen Sie sich hin. Spüren Sie, wie der Stuhl Sie stützt. Sie sind sicher.",
+  "step2Sub": "\"Mir ist unwohl, aber ich bin nicht in Gefahr.\"",
+  "step2Btn": "Ich habe pausiert",
+
+  "step3Title": "Atmen Sie mit Mir",
+  "step3Text": "Konzentrieren Sie sich auf den Kreis. Atmen Sie ein, während er sich ausdehnt. Atmen Sie aus, während er sich zusammenzieht. Lassen Sie Ihren Bauch sich heben.",
+  "step3Sub": "4-7-8 Rhythmus",
+  "step3Btn": "Ich atme...",
+
+  "step4Title": "Erdung",
+  "step4Text": "Schauen Sie sich um. Finden Sie 3 verschiedene Farben. Nennen Sie sie laut. Bringen Sie Ihren Geist zurück zur Realität.",
+  "step4Sub": "Sie sind hier, genau jetzt.",
+  "step4Btn": "Ich sehe sie",
+
+  "step5Title": "Wahrheit Sprechen",
+  "step5Text": "Ihr Herz rast wegen Adrenalin. Es ist ein Fehlalarm Ihres Körpers.",
+  "step5Sub": "\"Dieses Gefühl wird in Minuten vergehen.\"",
+  "step5Btn": "Ich verstehe",
+
+  "step6Title": "Schweben",
+  "step6Text": "Kämpfen Sie nicht gegen das Gefühl. Stellen Sie sich vor, Sie sind eine Feder, die auf einer Welle schwebt. Lassen Sie die Welle Sie tragen.",
+  "step6Sub": "Akzeptanz löst die Spannung.",
+  "step6Btn": "Ich schwebe",
+
+  "step7Title": "Seien Sie Sanft",
+  "step7Text": "Geben Sie sich nicht die Schuld. Sie bewältigen diesen schwierigen Moment mit großem Mut.",
+  "step7Sub": "\"Ich liebe und akzeptiere mich selbst.\"",
+  "step7Btn": "Ich versuche es",
+
+  "step8Title": "Warten",
+  "step8Text": "Der Höhepunkt ist vorbei. Lassen Sie die Zeit vergehen. Beeilen Sie sich nicht, sich sofort 'normal' zu fühlen.",
+  "step8Sub": "Geduld ist der Schlüssel.",
+  "step8Btn": "Ich warte...",
+
+  "step9Title": "Rückkehr",
+  "step9Text": "Sie haben die Welle überstanden. Sie sind stark. Trinken Sie einen Schluck Wasser, wenn Sie bereit sind.",
+  "step9Sub": "Willkommen zurück.",
+  "step9Btn": "Neu Starten",
+
+  "helpHeading": "Ich Brauche Hilfe",
+  "helpSubheading": "BITTE LESEN SIE DIES",
+  "helpP1": "Ich habe eine Panikattacke. Ich kann gerade nicht klar sprechen.",
+  "helpP2": "Ich sterbe NICHT.",
+  "helpP3": "Ich bin NICHT gefährlich.",
+  "helpP4": "Bitte rufen Sie keinen Krankenwagen, es sei denn, ich bitte darum.",
+  "helpP5": "Bitte setzen Sie sich einfach ruhig zu mir, bis sich meine Atmung verlangsamt. Danke.",
+  "helpBack": "Zurück zum Leitfaden",
+
+  "pracTitle": "Tägliche Übung",
+  "pracSub": "Bauen Sie Widerstandsfähigkeit vor dem Sturm auf.",
+  
+  "prac1Title": "Tiefes Atmen",
+  "prac1Desc": "Bauchatmung (Kap.4)",
+  
+  "prac2Title": "Bewegung",
+  "prac2Desc": "Energie freisetzen (Kap.5)",
+  
+  "prac3Title": "Selbstgespräch",
+  "prac3Desc": "Positive Logik (Kap.8)",
+  
+  "prac4Title": "Akzeptanz",
+  "prac4Desc": "Schwebetechnik (Kap.6)"
+}

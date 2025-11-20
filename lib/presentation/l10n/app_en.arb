@@ -1,0 +1,144 @@
+{
+  "@@locale": "en",
+  
+  "appTitle": "Panic Relief",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+
+  "langToggle": "中文",
+  "@langToggle": {
+    "description": "Language toggle button text"
+  },
+
+  "navCrisis": "CRISIS",
+  "@navCrisis": {
+    "description": "Crisis mode navigation label"
+  },
+
+  "navPractice": "PRACTICE",
+  "@navPractice": {
+    "description": "Practice mode navigation label"
+  },
+
+  "hintDoubleTap": "Double tap screen for Help Letter",
+  "@hintDoubleTap": {
+    "description": "Hint text for double tap gesture"
+  },
+
+  "step1Title": "Preparation",
+  "step1Text": "If possible, put on your headphones. Find a quiet corner. You are entering a safe space.",
+  "step1Sub": "Create a physical barrier.",
+  "step1Btn": "I'm ready",
+
+  "step2Title": "Stop & Pause",
+  "step2Text": "Stop whatever you are doing. Sit down. Feel the chair supporting you. You are safe.",
+  "step2Sub": "\"I am uncomfortable, but I am not in danger.\"",
+  "step2Btn": "I've paused",
+
+  "step3Title": "Breathe with Me",
+  "step3Text": "Focus on the circle. Inhale as it expands. Exhale as it shrinks. Let your belly rise.",
+  "step3Sub": "4-7-8 Rhythm",
+  "step3Btn": "Breathing...",
+
+  "step4Title": "Grounding",
+  "step4Text": "Look around. Find 3 distinct colors. Name them out loud. Bring your mind back to reality.",
+  "step4Sub": "You are here, right now.",
+  "step4Btn": "I see them",
+
+  "step5Title": "Truth Talk",
+  "step5Text": "Your heart is racing because of adrenaline. It's a false alarm from your body.",
+  "step5Sub": "\"This feeling will pass in minutes.\"",
+  "step5Btn": "I understand",
+
+  "step6Title": "Floating",
+  "step6Text": "Don't fight the feeling. Imagine you are a feather floating on a wave. Let the wave carry you.",
+  "step6Sub": "Acceptance dissolves the tension.",
+  "step6Btn": "I am floating",
+
+  "step7Title": "Be Gentle",
+  "step7Text": "Don't blame yourself. You are handling this difficult moment with great courage.",
+  "step7Sub": "\"I love and accept myself.\"",
+  "step7Btn": "I am trying",
+
+  "step8Title": "Waiting",
+  "step8Text": "The peak is over. Let time pass. Do not rush to feel 'normal' immediately.",
+  "step8Sub": "Patience is key.",
+  "step8Btn": "Waiting...",
+
+  "step9Title": "Return",
+  "step9Text": "You have ridden the wave. You are strong. Take a sip of water when you are ready.",
+  "step9Sub": "Welcome back.",
+  "step9Btn": "Start Over",
+
+  "helpHeading": "I Need Help",
+  "helpSubheading": "PLEASE READ THIS",
+  "helpP1": "I am having a Panic Attack. I cannot speak clearly right now.",
+  "helpP2": "I am NOT dying.",
+  "helpP3": "I am NOT dangerous.",
+  "helpP4": "Please do not call an ambulance unless I ask.",
+  "helpP5": "Please just sit with me calmly until my breathing slows down. Thank you.",
+  "helpBack": "Back to Guide",
+
+  "pracTitle": "Daily Practice",
+  "pracSub": "Build resilience before the storm.",
+  
+  "prac1Title": "Deep Breath",
+  "prac1Desc": "Abdominal breathing ",
+  
+  "prac2Title": "Movement",
+  "prac2Desc": "Release energy ",
+  
+  "prac3Title": "Self Talk",
+  "prac3Desc": "Positive logic ",
+  
+  "prac4Title": "Acceptance",
+  "prac4Desc": "Floating technique ",
+
+  "settingsTitle": "Settings",
+  "breathingSettingsTitle": "Breathing Settings",
+  "themeSettingsTitle": "Theme Settings",
+  "presetBeginner": "Beginner (3-5-6)",
+  "presetStandard": "Standard (4-7-8)",
+  "presetAdvanced": "Advanced (5-8-10)",
+  "customBreathingButton": "Record Custom Rhythm",
+  "currentBreathingRhythm": "Current Breathing Rhythm",
+  "inhale": "Inhale",
+  "hold": "Hold",
+  "exhale": "Exhale",
+  "seconds": "seconds",
+  "totalCycle": "Total Cycle",
+  "themeComingSoon": "Theme colors and content editing features",
+  "comingSoon": "Coming soon...",
+  "resetButton": "Reset to Defaults",
+  "resetDialogTitle": "Reset Settings",
+  "resetDialogContent": "Are you sure you want to reset all settings to default values?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  
+  "breathingRecorderTitle": "Custom Breathing Rhythm",
+  "recordYourRhythm": "Record Your Rhythm",
+  "recordedCycles": "Recorded Cycles",
+  "cycle": "Cycle",
+  "useThisRhythm": "Use This Rhythm",
+  "continueRecording": "Continue recording cycle",
+  "instructionWaiting": "Hold the circle to start inhaling\nRelease to hold breath\nHold again to exhale\nRepeat 3 times",
+  "instructionInhaling": "Inhaling...\nRelease to hold breath",
+  "instructionHoldingAfterInhale": "Holding breath...\nHold to start exhaling",
+  "instructionExhaling": "Exhaling...\nRelease to complete cycle",
+  "instructionHoldingAfterExhale": "Holding breath...\nHold to start next cycle",
+  "phaseHold": "Hold",
+  "phaseInhale": "Inhale",
+  "phaseExhale": "Exhale",
+  
+  "practiceYourRhythm": "Practice Your Rhythm",
+  "enterCustomRhythm": "Enter Custom Rhythm",
+  "inhaleSeconds": "Inhale (seconds)",
+  "holdSeconds": "Hold (seconds)",
+  "exhaleSeconds": "Exhale (seconds)",
+  "startPractice": "Start Practice",
+  "saveAsCustom": "Save as Custom Rhythm",
+  "practiceInstructions": "Practice this rhythm and adjust until you find what feels comfortable",
+  "rhythmSaved": "Rhythm saved successfully!",
+  "invalidInput": "Please enter valid numbers greater than 0"
+}

@@ -1,0 +1,78 @@
+{
+  "@@locale": "es",
+  
+  "appTitle": "Alivio del Pánico",
+  "langToggle": "中文 / EN",
+  "navCrisis": "CRISIS",
+  "navPractice": "PRÁCTICA",
+  "hintDoubleTap": "Toca dos veces la pantalla para ver la Carta de Ayuda",
+
+  "step1Title": "Preparación",
+  "step1Text": "Si es posible, ponte los auriculares. Encuentra un rincón tranquilo. Estás entrando en un espacio seguro.",
+  "step1Sub": "Crea una barrera física.",
+  "step1Btn": "Estoy listo",
+
+  "step2Title": "Detente y Pausa",
+  "step2Text": "Deja de hacer lo que estás haciendo. Siéntate. Siente la silla que te sostiene. Estás a salvo.",
+  "step2Sub": "\"Estoy incómodo, pero no estoy en peligro.\"",
+  "step2Btn": "He pausado",
+
+  "step3Title": "Respira Conmigo",
+  "step3Text": "Concéntrate en el círculo. Inhala mientras se expande. Exhala mientras se contrae. Deja que tu vientre se eleve.",
+  "step3Sub": "Ritmo 4-7-8",
+  "step3Btn": "Respirando...",
+
+  "step4Title": "Anclaje",
+  "step4Text": "Mira a tu alrededor. Encuentra 3 colores distintos. Nómbralos en voz alta. Trae tu mente de vuelta a la realidad.",
+  "step4Sub": "Estás aquí, ahora mismo.",
+  "step4Btn": "Los veo",
+
+  "step5Title": "Habla con la Verdad",
+  "step5Text": "Tu corazón late rápido por la adrenalina. Es una falsa alarma de tu cuerpo.",
+  "step5Sub": "\"Esta sensación pasará en minutos.\"",
+  "step5Btn": "Entiendo",
+
+  "step6Title": "Flotando",
+  "step6Text": "No luches contra la sensación. Imagina que eres una pluma flotando en una ola. Deja que la ola te lleve.",
+  "step6Sub": "La aceptación disuelve la tensión.",
+  "step6Btn": "Estoy flotando",
+
+  "step7Title": "Sé Amable",
+  "step7Text": "No te culpes. Estás manejando este momento difícil con gran valentía.",
+  "step7Sub": "\"Me amo y me acepto.\"",
+  "step7Btn": "Lo estoy intentando",
+
+  "step8Title": "Esperando",
+  "step8Text": "El pico ha pasado. Deja que pase el tiempo. No te apresures a sentirte 'normal' inmediatamente.",
+  "step8Sub": "La paciencia es clave.",
+  "step8Btn": "Esperando...",
+
+  "step9Title": "Regreso",
+  "step9Text": "Has superado la ola. Eres fuerte. Toma un sorbo de agua cuando estés listo.",
+  "step9Sub": "Bienvenido de vuelta.",
+  "step9Btn": "Empezar de Nuevo",
+
+  "helpHeading": "Necesito Ayuda",
+  "helpSubheading": "POR FAVOR LEE ESTO",
+  "helpP1": "Estoy teniendo un Ataque de Pánico. No puedo hablar claramente ahora.",
+  "helpP2": "NO me estoy muriendo.",
+  "helpP3": "NO soy peligroso.",
+  "helpP4": "Por favor, no llames a una ambulancia a menos que yo lo pida.",
+  "helpP5": "Por favor, solo siéntate conmigo tranquilamente hasta que mi respiración se calme. Gracias.",
+  "helpBack": "Volver a la Guía",
+
+  "pracTitle": "Práctica Diaria",
+  "pracSub": "Construye resiliencia antes de la tormenta.",
+  
+  "prac1Title": "Respiración Profunda",
+  "prac1Desc": "Respiración abdominal (Cap.4)",
+  
+  "prac2Title": "Movimiento",
+  "prac2Desc": "Libera energía (Cap.5)",
+  
+  "prac3Title": "Diálogo Interno",
+  "prac3Desc": "Lógica positiva (Cap.8)",
+  
+  "prac4Title": "Aceptación",
+  "prac4Desc": "Técnica de flotación (Cap.6)"
+}
