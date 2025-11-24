@@ -334,4 +334,88 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get invalidInput => 'Please enter valid numbers greater than 0';
+
+  @override
+  String get languageSettingsTitle => 'Language';
+
+  @override
+  String get languageSettingsSubtitle => 'Change app language';
+
+  @override
+  String get breathingSettingsSubtitle => 'Customize breathing rhythm';
+
+  @override
+  String get themeSettingsSubtitle => 'Customize colors and appearance';
+
+  @override
+  String get cardManagementTitle => 'Card Management';
+
+  @override
+  String get cardManagementSubtitle => 'Edit and organize crisis cards';
+
+  @override
+  String get calendarTitle => 'Usage Calendar';
+
+  @override
+  String get calendarSubtitle => 'View your session history';
+
+  @override
+  String get aboutTitle => 'About';
+
+  @override
+  String get aboutSubtitle => 'App information and credits';
+
+  @override
+  String get selectLanguagePrompt => 'Select your preferred language';
+
+  @override
+  String get breathingPresetsTitle => 'Presets';
+
+  @override
+  String get customBreathingTitle => 'Custom';
+
+  @override
+  String get currentSettingsTitle => 'Current Settings';
+
+  @override
+  String get unwindingTitle => 'Unwinding';
+
+  @override
+  String get unwindingInstructions =>
+      'Watch the rope unwind as you count down. Let go of tension with each number.';
+
+  @override
+  String get unwindingComplete => 'Well done! You\'ve released the tension.';
+
+  @override
+  String get breathingReminder => 'Keep breathing deeply';
+
+  @override
+  String get listeningTitle => 'Listen & Observe';
+
+  @override
+  String get listeningInstructions =>
+      'Close your eyes. Listen to the sounds around you. Identify and mark each sound you hear.';
+
+  @override
+  String get listeningMinimumTime =>
+      'Continue listening for at least 2 minutes';
+
+  @override
+  String get listeningCanContinue => 'Great! You can continue when ready';
+
+  @override
+  String get soundVoices => 'Voices';
+
+  @override
+  String get soundNature => 'Nature';
+
+  @override
+  String get soundMechanical => 'Mechanical';
+
+  @override
+  String get soundMusic => 'Music';
+
+  @override
+  String get soundAmbient => 'Ambient';
 }

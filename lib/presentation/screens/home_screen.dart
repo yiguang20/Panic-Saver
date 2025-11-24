@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/dimensions.dart';
 import '../../core/utils/haptic_utils.dart';
-import '../../domain/providers/language_provider.dart';
 import '../widgets/common/animated_background.dart';
 import '../widgets/crisis/crisis_card.dart';
 import '../widgets/practice/practice_overlay.dart';
@@ -88,51 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
 
-          // Right side buttons
-          Row(
-            children: [
-              // Language toggle
-              Consumer<LanguageProvider>(
-                builder: (context, languageProvider, _) {
-                  return Semantics(
-                    label: 'Change language. Current: ${languageProvider.currentLocale.languageCode}',
-                    button: true,
-                    child: InkWell(
-                      onTap: () async {
-                        // Selection haptic feedback for language toggle
-                        await HapticUtils.selection();
-                        languageProvider.toggleLanguage();
-                      },
-                      borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppDimensions.spacingM,
-                          vertical: AppDimensions.spacingS,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.whiteWithOpacity(0.2),
-                          ),
-                          borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-                          color: AppColors.whiteWithOpacity(0.05),
-                        ),
-                        child: Text(
-                          _getLanguageToggleText(languageProvider.currentLocale),
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(width: AppDimensions.spacingS),
-
-              // Settings button
-              Semantics(
+          // Settings button
+          Semantics(
                 label: 'Settings',
                 button: true,
                 child: InkWell(
@@ -158,28 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-            ],
-          ),
         ],
       ),
     );
-  }
-
-  String _getLanguageToggleText(Locale locale) {
-    switch (locale.languageCode) {
-      case 'zh':
-        return 'EN';
-      case 'en':
-        return '中文';
-      case 'es':
-        return 'EN / 中文';
-      case 'fr':
-        return 'EN / 中文';
-      case 'de':
-        return 'EN / 中文';
-      default:
-        return 'EN';
-    }
   }
 
   Widget _buildBottomNav(BuildContext context) {

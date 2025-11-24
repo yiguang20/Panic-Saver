@@ -16,12 +16,13 @@ class AppTheme {
         primary: AppColors.aqua,
         secondary: AppColors.lilac,
         surface: AppColors.navy,
-        background: AppColors.navyDark,
-        error: AppColors.error,
+        surfaceContainerHighest: AppColors.navyDark,
+        error: AppColors.warning, // Using softer warning color instead of harsh red
         onPrimary: Colors.white,
         onSecondary: AppColors.navyDark,
         onSurface: AppColors.textMain,
-        onBackground: AppColors.textMain,
+        tertiary: AppColors.softBlue,
+        onTertiary: Colors.white,
       ),
 
       // Scaffold
@@ -100,7 +101,7 @@ class AppTheme {
         bodySmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w400,
-          color: AppColors.textMain.withOpacity(0.7),
+          color: AppColors.textMain.withValues(alpha: 0.7),
           height: 1.5,
         ),
         labelLarge: TextStyle(

@@ -263,6 +263,12 @@ class _PracticeOverlayState extends State<PracticeOverlay>
         return Icons.chat_bubble_outline;
       case 'feather':
         return Icons.water_drop_outlined;
+      case 'autorenew':
+        return Icons.autorenew;
+      case 'hearing':
+        return Icons.hearing;
+      case 'favorite':
+        return Icons.favorite;
       default:
         return Icons.help_outline;
     }

@@ -140,5 +140,35 @@
   "saveAsCustom": "Save as Custom Rhythm",
   "practiceInstructions": "Practice this rhythm and adjust until you find what feels comfortable",
   "rhythmSaved": "Rhythm saved successfully!",
-  "invalidInput": "Please enter valid numbers greater than 0"
+  "invalidInput": "Please enter valid numbers greater than 0",
+  
+  "languageSettingsTitle": "Language",
+  "languageSettingsSubtitle": "Change app language",
+  "breathingSettingsSubtitle": "Customize breathing rhythm",
+  "themeSettingsSubtitle": "Customize colors and appearance",
+  "cardManagementTitle": "Card Management",
+  "cardManagementSubtitle": "Edit and organize crisis cards",
+  "calendarTitle": "Usage Calendar",
+  "calendarSubtitle": "View your session history",
+  "aboutTitle": "About",
+  "aboutSubtitle": "App information and credits",
+  "selectLanguagePrompt": "Select your preferred language",
+  "breathingPresetsTitle": "Presets",
+  "customBreathingTitle": "Custom",
+  "currentSettingsTitle": "Current Settings",
+  
+  "unwindingTitle": "Unwinding",
+  "unwindingInstructions": "Watch the rope unwind as you count down. Let go of tension with each number.",
+  "unwindingComplete": "Well done! You've released the tension.",
+  "breathingReminder": "Keep breathing deeply",
+  
+  "listeningTitle": "Listen & Observe",
+  "listeningInstructions": "Close your eyes. Listen to the sounds around you. Identify and mark each sound you hear.",
+  "listeningMinimumTime": "Continue listening for at least 2 minutes",
+  "listeningCanContinue": "Great! You can continue when ready",
+  "soundVoices": "Voices",
+  "soundNature": "Nature",
+  "soundMechanical": "Mechanical",
+  "soundMusic": "Music",
+  "soundAmbient": "Ambient"
 }

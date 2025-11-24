@@ -9,7 +9,7 @@ import 'domain/providers/language_provider.dart';
 import 'domain/providers/settings_provider.dart';
 import 'presentation/l10n/app_localizations.dart';
 import 'presentation/screens/home_screen.dart';
-import 'presentation/screens/settings_screen.dart';
+import 'presentation/screens/settings/settings_main_screen.dart';
 
 void main() async {
   // Ensure Flutter is initialized
@@ -109,7 +109,7 @@ class PanicSaverApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: const HomeScreen(),
             routes: {
-              '/settings': (context) => const SettingsScreen(),
+              '/settings': (context) => const SettingsMainScreen(),
             },
           );
         },

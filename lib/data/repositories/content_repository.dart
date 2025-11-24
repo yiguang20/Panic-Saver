@@ -9,8 +9,8 @@ class ContentRepository {
   /// Get crisis steps for the given locale
   List<CrisisStep> getCrisisSteps(BuildContext context) {
     // Content is loaded from generated localizations
-    // This will be populated with actual localized strings
-    return List.generate(9, (index) {
+    // Enhanced flow with new therapeutic cards
+    return List.generate(12, (index) {
       final stepNum = index + 1;
       return CrisisStep(
         stepNumber: stepNum,
@@ -19,6 +19,7 @@ class ContentRepository {
         text: _getStepText(context, stepNum),
         subText: _getStepSub(context, stepNum),
         buttonText: _getStepBtn(context, stepNum),
+        type: _getStepType(stepNum),
       );
     });
   }
@@ -69,6 +70,27 @@ class ContentRepository {
         description: _getLocalizedString(context, 'prac4Desc'),
         chapterReference: 'Ch.6',
       ),
+      PracticeItem(
+        id: 'unwinding',
+        iconName: 'autorenew',
+        title: _getLocalizedString(context, 'prac5Title'),
+        description: _getLocalizedString(context, 'prac5Desc'),
+        chapterReference: 'Ch.7',
+      ),
+      PracticeItem(
+        id: 'listening',
+        iconName: 'hearing',
+        title: _getLocalizedString(context, 'prac6Title'),
+        description: _getLocalizedString(context, 'prac6Desc'),
+        chapterReference: 'Ch.9',
+      ),
+      PracticeItem(
+        id: 'affirmation',
+        iconName: 'favorite',
+        title: _getLocalizedString(context, 'prac7Title'),
+        description: _getLocalizedString(context, 'prac7Desc'),
+        chapterReference: 'Ch.10',
+      ),
     ];
   }
 
@@ -85,6 +107,12 @@ class ContentRepository {
         return _getSelfTalkExercise(locale);
       case 'acceptance':
         return _getAcceptanceExercise(locale);
+      case 'unwinding':
+        return _getUnwindingExercise(locale);
+      case 'listening':
+        return _getListeningExercise(locale);
+      case 'affirmation':
+        return _getAffirmationExercise(locale);
       default:
         return _getBreathingExercise(locale);
     }
@@ -352,6 +380,21 @@ class ContentRepository {
     }
   }
 
+  CrisisStepType _getStepType(int stepNum) {
+    switch (stepNum) {
+      case 3:
+        return CrisisStepType.breathing;
+      case 5:
+        return CrisisStepType.unwinding;
+      case 7:
+        return CrisisStepType.listening;
+      case 9:
+        return CrisisStepType.affirmation;
+      default:
+        return CrisisStepType.standard;
+    }
+  }
+
   String _getIconType(int stepNum) {
     switch (stepNum) {
       case 1:
@@ -363,14 +406,20 @@ class ContentRepository {
       case 4:
         return 'ground';
       case 5:
-        return 'talk';
+        return 'unwinding';
       case 6:
-        return 'float';
+        return 'talk';
       case 7:
-        return 'compassion';
+        return 'listening';
       case 8:
-        return 'wait';
+        return 'float';
       case 9:
+        return 'affirmation';
+      case 10:
+        return 'compassion';
+      case 11:
+        return 'wait';
+      case 12:
         return 'end';
       default:
         return 'prep';
@@ -393,6 +442,198 @@ class ContentRepository {
     return _getLocalizedString(context, 'step${stepNum}Btn');
   }
 
+  PracticeExercise _getUnwindingExercise(String locale) {
+    if (locale == 'zh') {
+      return const PracticeExercise(
+        id: 'unwinding',
+        title: '解旋放松',
+        subtitle: '通过视觉隐喻释放紧张',
+        description: '解旋动画是一种强大的视觉隐喻，帮助你释放身体和心理的紧张。看着绳子慢慢解开，想象你的焦虑也在随之消散。',
+        steps: [
+          '找一个舒适的位置坐下或躺下',
+          '专注于屏幕上的解旋动画',
+          '想象绳子代表你的紧张和焦虑',
+          '随着绳子解开，感受你的身体也在放松',
+          '配合深呼吸，让放松更深入',
+          '观看完整的100秒倒数',
+        ],
+        benefits: [
+          '提供视觉焦点，转移注意力',
+          '通过隐喻帮助理解放松过程',
+          '倒数提供时间感和控制感',
+          '可以重复观看，强化放松效果',
+          '简单易行，随时可用',
+        ],
+        duration: '2-3分钟',
+        frequency: '焦虑时使用，或每天1-2次',
+        tips: [
+          '不要强迫自己放松，只是观察',
+          '可以配合腹式呼吸使用',
+          '如果感觉有帮助，可以多看几次',
+          '想象绳子是你的焦虑，正在离开你',
+        ],
+      );
+    } else {
+      return const PracticeExercise(
+        id: 'unwinding',
+        title: 'Unwinding Relaxation',
+        subtitle: 'Release tension through visual metaphor',
+        description: 'The unwinding animation is a powerful visual metaphor to help you release physical and mental tension. Watch the rope slowly unwind and imagine your anxiety dissipating with it.',
+        steps: [
+          'Find a comfortable position, sitting or lying down',
+          'Focus on the unwinding animation on screen',
+          'Imagine the rope represents your tension and anxiety',
+          'As the rope unwinds, feel your body relaxing too',
+          'Combine with deep breathing for deeper relaxation',
+          'Watch the complete 100-second countdown',
+        ],
+        benefits: [
+          'Provides visual focus to redirect attention',
+          'Uses metaphor to understand the relaxation process',
+          'Countdown provides sense of time and control',
+          'Can be repeated to reinforce relaxation',
+          'Simple and accessible anytime',
+        ],
+        duration: '2-3 minutes',
+        frequency: 'Use during anxiety, or 1-2 times daily',
+        tips: [
+          'Don\'t force relaxation, just observe',
+          'Can be combined with abdominal breathing',
+          'If helpful, watch multiple times',
+          'Imagine the rope is your anxiety leaving you',
+        ],
+      );
+    }
+  }
+
+  PracticeExercise _getListeningExercise(String locale) {
+    if (locale == 'zh') {
+      return const PracticeExercise(
+        id: 'listening',
+        title: '聆听觉察',
+        subtitle: '通过声音接地到当下',
+        description: '聆听觉察是一种感官接地技术，通过专注于周围的声音，帮助你从焦虑的思绪中脱离，回到当下的现实。',
+        steps: [
+          '找一个相对安静的地方',
+          '闭上眼睛或保持柔和的目光',
+          '开始注意周围的声音',
+          '识别不同类型的声音：人声、自然声、机械声等',
+          '不要评判声音，只是观察和标记',
+          '持续至少2分钟',
+        ],
+        benefits: [
+          '将注意力从内部转向外部',
+          '激活感官，增强现实感',
+          '打断焦虑的思维循环',
+          '培养正念和觉察能力',
+          '可以在任何环境中练习',
+        ],
+        duration: '2-5分钟',
+        frequency: '焦虑时使用，或每天练习',
+        tips: [
+          '不需要安静的环境，任何声音都可以',
+          '如果思绪飘走，温柔地带回到声音上',
+          '可以配合深呼吸',
+          '标记声音类别可以增强专注',
+        ],
+      );
+    } else {
+      return const PracticeExercise(
+        id: 'listening',
+        title: 'Listening Awareness',
+        subtitle: 'Ground yourself through sound',
+        description: 'Listening awareness is a sensory grounding technique that helps you disconnect from anxious thoughts and return to present reality by focusing on surrounding sounds.',
+        steps: [
+          'Find a relatively quiet place',
+          'Close your eyes or maintain a soft gaze',
+          'Begin noticing sounds around you',
+          'Identify different types: voices, nature, mechanical, etc.',
+          'Don\'t judge the sounds, just observe and mark them',
+          'Continue for at least 2 minutes',
+        ],
+        benefits: [
+          'Shifts attention from internal to external',
+          'Activates senses, enhances sense of reality',
+          'Interrupts anxious thought cycles',
+          'Cultivates mindfulness and awareness',
+          'Can be practiced in any environment',
+        ],
+        duration: '2-5 minutes',
+        frequency: 'Use during anxiety, or practice daily',
+        tips: [
+          'No need for quiet environment, any sound works',
+          'If mind wanders, gently return to sounds',
+          'Can be combined with deep breathing',
+          'Marking sound categories enhances focus',
+        ],
+      );
+    }
+  }
+
+  PracticeExercise _getAffirmationExercise(String locale) {
+    if (locale == 'zh') {
+      return const PracticeExercise(
+        id: 'affirmation',
+        title: '自我肯定',
+        subtitle: '通过积极对话建立安全感',
+        description: '自我肯定是一种认知技术，通过重复积极、真实的陈述，帮助你对抗焦虑的灾难化思维，建立内在的安全感和信心。',
+        steps: [
+          '找一个安静的地方',
+          '慢慢阅读每一句肯定语',
+          '让每句话深入内心',
+          '可以大声重复',
+          '感受话语带来的平静',
+          '完成所有肯定语',
+        ],
+        benefits: [
+          '对抗灾难化思维',
+          '建立内在安全感',
+          '增强自我信心',
+          '提供情感支持',
+          '可以随时使用',
+        ],
+        duration: '3-5分钟',
+        frequency: '焦虑时使用，或每天早晚各一次',
+        tips: [
+          '不要期待立即相信，需要重复练习',
+          '可以选择最有共鸣的语句重复',
+          '可以创建自己的肯定语',
+          '配合深呼吸效果更好',
+        ],
+      );
+    } else {
+      return const PracticeExercise(
+        id: 'affirmation',
+        title: 'Self-Affirmation',
+        subtitle: 'Build safety through positive dialogue',
+        description: 'Self-affirmation is a cognitive technique that helps you counter catastrophic thinking and build inner safety and confidence through repeating positive, truthful statements.',
+        steps: [
+          'Find a quiet place',
+          'Read each affirmation slowly',
+          'Let each statement sink in',
+          'Can repeat aloud',
+          'Feel the calm the words bring',
+          'Complete all affirmations',
+        ],
+        benefits: [
+          'Counters catastrophic thinking',
+          'Builds inner sense of safety',
+          'Strengthens self-confidence',
+          'Provides emotional support',
+          'Can be used anytime',
+        ],
+        duration: '3-5 minutes',
+        frequency: 'Use during anxiety, or morning and evening daily',
+        tips: [
+          'Don\'t expect immediate belief, needs repeated practice',
+          'Can repeat statements that resonate most',
+          'Can create your own affirmations',
+          'Works better with deep breathing',
+        ],
+      );
+    }
+  }
+
   String _getLocalizedString(BuildContext context, String key) {
     try {
       // Temporary: Return hardcoded strings based on key
@@ -410,31 +651,43 @@ class ContentRepository {
         'step3Title': 'Breathe with Me',
         'step3Text': 'Focus on the circle. Inhale as it expands. Exhale as it shrinks. Let your belly rise.',
         'step3Sub': '4-7-8 Rhythm',
-        'step3Btn': 'Breathing...',
+        'step3Btn': 'Continue',
         'step4Title': 'Grounding',
         'step4Text': 'Look around. Find 3 distinct colors. Name them out loud. Bring your mind back to reality.',
         'step4Sub': 'You are here, right now.',
         'step4Btn': 'I see them',
-        'step5Title': 'Truth Talk',
-        'step5Text': 'Your heart is racing because of adrenaline. It\'s a false alarm from your body.',
-        'step5Sub': '"This feeling will pass in minutes."',
-        'step5Btn': 'I understand',
-        'step6Title': 'Floating',
-        'step6Text': 'Don\'t fight the feeling. Imagine you are a feather floating on a wave. Let the wave carry you.',
-        'step6Sub': 'Acceptance dissolves the tension.',
-        'step6Btn': 'I am floating',
-        'step7Title': 'Be Gentle',
-        'step7Text': 'Don\'t blame yourself. You are handling this difficult moment with great courage.',
-        'step7Sub': '"I love and accept myself."',
-        'step7Btn': 'I am trying',
-        'step8Title': 'Waiting',
-        'step8Text': 'The peak is over. Let time pass. Do not rush to feel \'normal\' immediately.',
-        'step8Sub': 'Patience is key.',
-        'step8Btn': 'Waiting...',
-        'step9Title': 'Return',
-        'step9Text': 'You have ridden the wave. You are strong. Take a sip of water when you are ready.',
-        'step9Sub': 'Welcome back.',
-        'step9Btn': 'Start Over',
+        'step5Title': 'Unwinding',
+        'step5Text': 'Watch the rope unwind. Count down with it. Feel your tension releasing.',
+        'step5Sub': 'Let go of what you cannot control.',
+        'step5Btn': 'Continue',
+        'step6Title': 'Truth Talk',
+        'step6Text': 'Your heart is racing because of adrenaline. It\'s a false alarm from your body.',
+        'step6Sub': '"This feeling will pass in minutes."',
+        'step6Btn': 'I understand',
+        'step7Title': 'Listening',
+        'step7Text': 'Close your eyes. Listen to the sounds around you. Ground yourself in reality.',
+        'step7Sub': 'You are safe in this moment.',
+        'step7Btn': 'Continue',
+        'step8Title': 'Floating',
+        'step8Text': 'Don\'t fight the feeling. Imagine you are a feather floating on a wave. Let the wave carry you.',
+        'step8Sub': 'Acceptance dissolves the tension.',
+        'step8Btn': 'I am floating',
+        'step9Title': 'Affirmation',
+        'step9Text': 'Read these words slowly. Let them sink in. Believe in your strength.',
+        'step9Sub': 'You are capable and safe.',
+        'step9Btn': 'Continue',
+        'step10Title': 'Be Gentle',
+        'step10Text': 'Don\'t blame yourself. You are handling this difficult moment with great courage.',
+        'step10Sub': '"I love and accept myself."',
+        'step10Btn': 'I am trying',
+        'step11Title': 'Waiting',
+        'step11Text': 'The peak is over. Let time pass. Do not rush to feel \'normal\' immediately.',
+        'step11Sub': 'Patience is key.',
+        'step11Btn': 'Waiting...',
+        'step12Title': 'Return',
+        'step12Text': 'You have ridden the wave. You are strong. Take a sip of water when you are ready.',
+        'step12Sub': 'Welcome back.',
+        'step12Btn': 'Start Over',
         // Help Letter
         'helpHeading': 'I Need Help',
         'helpSubheading': 'PLEASE READ THIS',
@@ -453,6 +706,12 @@ class ContentRepository {
         'prac3Desc': 'Positive logic ',
         'prac4Title': 'Acceptance',
         'prac4Desc': 'Floating technique ',
+        'prac5Title': 'Unwinding',
+        'prac5Desc': 'Visual relaxation ',
+        'prac6Title': 'Listening',
+        'prac6Desc': 'Sound awareness ',
+        'prac7Title': 'Affirmation',
+        'prac7Desc': 'Positive self-talk ',
       },
       'zh': {
         'step1Title': '准备',
@@ -466,31 +725,43 @@ class ContentRepository {
         'step3Title': '跟随呼吸',
         'step3Text': '看着上方的光球。随着它变大吸气，随着它变小呼气。把气吸到肚子里。',
         'step3Sub': '呼气要比吸气长。',
-        'step3Btn': '跟随中...',
+        'step3Btn': '继续',
         'step4Title': '着地技术',
         'step4Text': '看看周围。找出 3 个蓝色的东西。大声说出它们的名字。感受双脚踩在地面的实感。',
         'step4Sub': '你就在这里，现实世界很安全。',
         'step4Btn': '我找到了',
-        'step5Title': '自我对话',
-        'step5Text': '心跳快只是因为肾上腺素。你不会死，也不会发疯。这只是暂时的生理反应。',
-        'step5Sub': '"我以前经历过，每次都平安度过了。"',
-        'step5Btn': '我相信',
-        'step6Title': '漂浮',
-        'step6Text': '不要对抗这种感觉。对抗只会增加焦虑。像羽毛一样漂浮在海浪上，任由它起伏。',
-        'step6Sub': '面对，接受，漂浮，等待。',
-        'step6Btn': '正在漂浮',
-        'step7Title': '自我关怀',
-        'step7Text': '你做得很好。不要责怪自己。你正在勇敢地面对困难。',
-        'step7Sub': '对自己温柔一点。',
-        'step7Btn': '感受中',
-        'step8Title': '等待消退',
-        'step8Text': '风暴正在减弱。给自己一点时间。不要急着立刻好起来。',
-        'step8Sub': '让时间治愈一切。',
-        'step8Btn': '等待中...',
-        'step9Title': '回归',
-        'step9Text': '你战胜了这次海浪。你很坚强。喝口水，准备好后再回到生活中。',
-        'step9Sub': '欢迎回来。',
-        'step9Btn': '重新开始',
+        'step5Title': '解旋放松',
+        'step5Text': '看着绳子慢慢解开。跟着倒数。感受你的紧张也在释放。',
+        'step5Sub': '放下你无法控制的。',
+        'step5Btn': '继续',
+        'step6Title': '自我对话',
+        'step6Text': '心跳快只是因为肾上腺素。你不会死，也不会发疯。这只是暂时的生理反应。',
+        'step6Sub': '"我以前经历过，每次都平安度过了。"',
+        'step6Btn': '我相信',
+        'step7Title': '聆听觉察',
+        'step7Text': '闭上眼睛。聆听周围的声音。让自己回到现实。',
+        'step7Sub': '此刻你是安全的。',
+        'step7Btn': '继续',
+        'step8Title': '漂浮',
+        'step8Text': '不要对抗这种感觉。对抗只会增加焦虑。像羽毛一样漂浮在海浪上，任由它起伏。',
+        'step8Sub': '面对，接受，漂浮，等待。',
+        'step8Btn': '正在漂浮',
+        'step9Title': '自我肯定',
+        'step9Text': '慢慢阅读这些话。让它们深入内心。相信你的力量。',
+        'step9Sub': '你有能力，你很安全。',
+        'step9Btn': '继续',
+        'step10Title': '自我关怀',
+        'step10Text': '你做得很好。不要责怪自己。你正在勇敢地面对困难。',
+        'step10Sub': '对自己温柔一点。',
+        'step10Btn': '感受中',
+        'step11Title': '等待消退',
+        'step11Text': '风暴正在减弱。给自己一点时间。不要急着立刻好起来。',
+        'step11Sub': '让时间治愈一切。',
+        'step11Btn': '等待中...',
+        'step12Title': '回归',
+        'step12Text': '你战胜了这次海浪。你很坚强。喝口水，准备好后再回到生活中。',
+        'step12Sub': '欢迎回来。',
+        'step12Btn': '重新开始',
         // Help Letter
         'helpHeading': '我需要帮助',
         'helpSubheading': '请阅读这段话',
@@ -509,6 +780,12 @@ class ContentRepository {
         'prac3Desc': '改变灾难化思维 ',
         'prac4Title': '接纳漂浮',
         'prac4Desc': '威克斯漂浮法 ',
+        'prac5Title': '解旋放松',
+        'prac5Desc': '视觉放松 ',
+        'prac6Title': '聆听觉察',
+        'prac6Desc': '声音觉察 ',
+        'prac7Title': '自我肯定',
+        'prac7Desc': '积极对话 ',
       },
     };
 

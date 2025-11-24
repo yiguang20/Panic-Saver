@@ -1,3 +1,12 @@
+/// Type of crisis step
+enum CrisisStepType {
+  standard,      // Regular text-based step
+  breathing,     // Breathing exercise with orb
+  unwinding,     // Unwinding animation with countdown
+  listening,     // Listening awareness exercise
+  affirmation,   // Self-affirmation statements
+}
+
 /// Model representing a single step in the crisis guidance flow
 class CrisisStep {
   final int stepNumber;
@@ -6,6 +15,7 @@ class CrisisStep {
   final String text;
   final String subText;
   final String buttonText;
+  final CrisisStepType type;
 
   const CrisisStep({
     required this.stepNumber,
@@ -14,6 +24,7 @@ class CrisisStep {
     required this.text,
     required this.subText,
     required this.buttonText,
+    this.type = CrisisStepType.standard,
   });
 
   Map<String, dynamic> toJson() {
@@ -24,6 +35,7 @@ class CrisisStep {
       'text': text,
       'subText': subText,
       'buttonText': buttonText,
+      'type': type.toString(),
     };
   }
 
@@ -35,6 +47,10 @@ class CrisisStep {
       text: json['text'] as String,
       subText: json['subText'] as String,
       buttonText: json['buttonText'] as String,
+      type: CrisisStepType.values.firstWhere(
+        (e) => e.toString() == json['type'],
+        orElse: () => CrisisStepType.standard,
+      ),
     );
   }
 
@@ -47,7 +63,8 @@ class CrisisStep {
         other.title == title &&
         other.text == text &&
         other.subText == subText &&
-        other.buttonText == buttonText;
+        other.buttonText == buttonText &&
+        other.type == type;
   }
 
   @override
@@ -59,6 +76,7 @@ class CrisisStep {
       text,
       subText,
       buttonText,
+      type,
     );
   }
 }

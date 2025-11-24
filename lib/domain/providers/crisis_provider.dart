@@ -17,7 +17,7 @@ class CrisisProvider extends ChangeNotifier {
   bool get isFlipped => _isFlipped;
 
   /// Total number of steps in the crisis flow
-  int get totalSteps => 9;
+  int get totalSteps => 12;
 
   /// Advance to the next step
   void nextStep() {

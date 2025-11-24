@@ -316,4 +316,85 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get invalidInput => '请输入大于0的有效数字';
+
+  @override
+  String get languageSettingsTitle => '语言设置';
+
+  @override
+  String get languageSettingsSubtitle => '更改应用语言';
+
+  @override
+  String get breathingSettingsSubtitle => '自定义呼吸节奏';
+
+  @override
+  String get themeSettingsSubtitle => '自定义颜色和外观';
+
+  @override
+  String get cardManagementTitle => '卡片管理';
+
+  @override
+  String get cardManagementSubtitle => '编辑和组织危机卡片';
+
+  @override
+  String get calendarTitle => '使用日历';
+
+  @override
+  String get calendarSubtitle => '查看您的会话历史';
+
+  @override
+  String get aboutTitle => '关于';
+
+  @override
+  String get aboutSubtitle => '应用信息和致谢';
+
+  @override
+  String get selectLanguagePrompt => '选择您的首选语言';
+
+  @override
+  String get breathingPresetsTitle => '预设';
+
+  @override
+  String get customBreathingTitle => '自定义';
+
+  @override
+  String get currentSettingsTitle => '当前设置';
+
+  @override
+  String get unwindingTitle => '解旋';
+
+  @override
+  String get unwindingInstructions => '看着绳子解开，随着倒数放下紧张。每个数字都释放一分压力。';
+
+  @override
+  String get unwindingComplete => '做得好！你已经释放了紧张。';
+
+  @override
+  String get breathingReminder => '保持深呼吸';
+
+  @override
+  String get listeningTitle => '聆听觉察';
+
+  @override
+  String get listeningInstructions => '闭上眼睛。聆听周围的声音。识别并标记你听到的每一种声音。';
+
+  @override
+  String get listeningMinimumTime => '请继续聆听至少2分钟';
+
+  @override
+  String get listeningCanContinue => '很好！准备好后可以继续';
+
+  @override
+  String get soundVoices => '人声';
+
+  @override
+  String get soundNature => '自然';
+
+  @override
+  String get soundMechanical => '机械';
+
+  @override
+  String get soundMusic => '音乐';
+
+  @override
+  String get soundAmbient => '环境';
 }

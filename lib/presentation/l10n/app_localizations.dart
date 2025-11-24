@@ -721,6 +721,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter valid numbers greater than 0'**
   String get invalidInput;
+
+  /// No description provided for @languageSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageSettingsTitle;
+
+  /// No description provided for @languageSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change app language'**
+  String get languageSettingsSubtitle;
+
+  /// No description provided for @breathingSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize breathing rhythm'**
+  String get breathingSettingsSubtitle;
+
+  /// No description provided for @themeSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize colors and appearance'**
+  String get themeSettingsSubtitle;
+
+  /// No description provided for @cardManagementTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Management'**
+  String get cardManagementTitle;
+
+  /// No description provided for @cardManagementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit and organize crisis cards'**
+  String get cardManagementSubtitle;
+
+  /// No description provided for @calendarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Usage Calendar'**
+  String get calendarTitle;
+
+  /// No description provided for @calendarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View your session history'**
+  String get calendarSubtitle;
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutTitle;
+
+  /// No description provided for @aboutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App information and credits'**
+  String get aboutSubtitle;
+
+  /// No description provided for @selectLanguagePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred language'**
+  String get selectLanguagePrompt;
+
+  /// No description provided for @breathingPresetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get breathingPresetsTitle;
+
+  /// No description provided for @customBreathingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get customBreathingTitle;
+
+  /// No description provided for @currentSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Settings'**
+  String get currentSettingsTitle;
+
+  /// No description provided for @unwindingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unwinding'**
+  String get unwindingTitle;
+
+  /// No description provided for @unwindingInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch the rope unwind as you count down. Let go of tension with each number.'**
+  String get unwindingInstructions;
+
+  /// No description provided for @unwindingComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done! You\'ve released the tension.'**
+  String get unwindingComplete;
+
+  /// No description provided for @breathingReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep breathing deeply'**
+  String get breathingReminder;
+
+  /// No description provided for @listeningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen & Observe'**
+  String get listeningTitle;
+
+  /// No description provided for @listeningInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Close your eyes. Listen to the sounds around you. Identify and mark each sound you hear.'**
+  String get listeningInstructions;
+
+  /// No description provided for @listeningMinimumTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue listening for at least 2 minutes'**
+  String get listeningMinimumTime;
+
+  /// No description provided for @listeningCanContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Great! You can continue when ready'**
+  String get listeningCanContinue;
+
+  /// No description provided for @soundVoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Voices'**
+  String get soundVoices;
+
+  /// No description provided for @soundNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get soundNature;
+
+  /// No description provided for @soundMechanical.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanical'**
+  String get soundMechanical;
+
+  /// No description provided for @soundMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get soundMusic;
+
+  /// No description provided for @soundAmbient.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient'**
+  String get soundAmbient;
 }
 
 class _AppLocalizationsDelegate
