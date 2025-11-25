@@ -151,5 +151,59 @@
   "soundNature": "自然",
   "soundMechanical": "机械",
   "soundMusic": "音乐",
-  "soundAmbient": "环境"
+  "soundAmbient": "环境",
+  
+  "affirmationTitle": "自我肯定",
+  "affirmationInstructions": "慢慢阅读每一句话。让这些话语沉淀在心中。",
+  "affirmationComplete": "你已完成所有肯定语句。你很坚强。",
+  "affirmation1": "我很安全",
+  "affirmation2": "这只是身体的一种反应",
+  "affirmation3": "它会自然消退",
+  "affirmation4": "我会耐心等待",
+  "affirmation5": "我接纳并爱自己",
+  "nextAffirmation": "下一句",
+  
+  "calendarNoSessions": "暂无会话记录",
+  "calendarTotalSessions": "总会话数",
+  "calendarAverageDuration": "平均时长",
+  "calendarMostCommonTime": "常见时间",
+  "calendarLongestStreak": "最长连续",
+  "calendarDays": "天",
+  "calendarSessionDetails": "会话详情",
+  "calendarStartTime": "开始时间",
+  "calendarDuration": "时长",
+  "calendarStepsCompleted": "完成步骤",
+  
+  "cardEditorTitle": "编辑卡片",
+  "cardEditorTitleLabel": "标题",
+  "cardEditorMainTextLabel": "主要文本",
+  "cardEditorSubTextLabel": "副文本",
+  "cardEditorButtonLabel": "按钮文本",
+  "cardEditorSave": "保存",
+  "cardEditorReset": "恢复默认",
+  "cardEditorPreview": "预览",
+  "cardEditorUnsavedChanges": "有未保存的更改",
+  "cardEditorDiscardChanges": "放弃更改？",
+  
+  "practiceStepOf": "步骤 {current} / {total}",
+  "@practiceStepOf": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "practiceComplete": "练习完成！",
+  "practiceWellDone": "做得很好！坚持练习会让你更加从容。",
+  "practiceNext": "下一步",
+  "practicePrevious": "上一步",
+  
+  "exportData": "导出数据",
+  "importData": "导入数据",
+  "exportSuccess": "数据导出成功",
+  "importSuccess": "数据导入成功",
+  "exportError": "数据导出失败",
+  "importError": "数据导入失败",
+  
+  "holdToConfirm": "按住确认",
+  "skip": "跳过"
 }

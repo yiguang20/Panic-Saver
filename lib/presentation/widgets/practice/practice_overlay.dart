@@ -3,7 +3,7 @@ import '../../../core/constants/colors.dart';
 import '../../../core/constants/dimensions.dart';
 import '../../../core/utils/haptic_utils.dart';
 import '../../../data/repositories/content_repository.dart';
-import '../../screens/practice_detail_screen.dart';
+import '../../screens/interactive_practice_screen.dart';
 
 /// Practice mode overlay that slides up from bottom
 class PracticeOverlay extends StatefulWidget {
@@ -246,9 +246,10 @@ class _PracticeOverlayState extends State<PracticeOverlay>
     final contentRepo = ContentRepository();
     final exercise = contentRepo.getPracticeExercise(context, id);
     
+    // Use interactive practice screen for guided exercises
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => PracticeDetailScreen(exercise: exercise),
+        builder: (context) => InteractivePracticeScreen(exercise: exercise),
       ),
     );
   }

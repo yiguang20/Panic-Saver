@@ -112,11 +112,16 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
       children: [
         // Main hold-to-confirm button
         Expanded(
-          child: GestureDetector(
-            onTapDown: _handleTapDown,
-            onTapUp: (_) => _handleTapUp(),
-            onTapCancel: _handleTapUp,
-            child: AnimatedBuilder(
+          child: Semantics(
+            label: widget.label,
+            hint: 'Hold for 2 seconds to confirm, or tap skip button',
+            button: true,
+            enabled: !_isCompleted,
+            child: GestureDetector(
+              onTapDown: _handleTapDown,
+              onTapUp: (_) => _handleTapUp(),
+              onTapCancel: _handleTapUp,
+              child: AnimatedBuilder(
               animation: _progressController,
               builder: (context, child) {
                 return Stack(
@@ -205,15 +210,20 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
               },
             ),
           ),
+          ),
         ),
         
         // Skip button
         if (widget.showSkipButton) ...[
           const SizedBox(width: AppDimensions.spacingM),
-          InkWell(
-            onTap: _handleSkip,
-            borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-            child: Container(
+          Semantics(
+            label: 'Skip',
+            hint: 'Tap to skip the hold confirmation',
+            button: true,
+            child: InkWell(
+              onTap: _handleSkip,
+              borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
+              child: Container(
               width: AppDimensions.skipButtonSize,
               height: AppDimensions.skipButtonSize,
               decoration: BoxDecoration(
@@ -228,6 +238,7 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
                 color: AppColors.whiteWithOpacity(0.6),
                 size: 18,
               ),
+            ),
             ),
           ),
         ],

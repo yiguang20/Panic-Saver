@@ -418,4 +418,135 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get soundAmbient => 'Ambient';
+
+  @override
+  String get affirmationTitle => 'Self-Affirmation';
+
+  @override
+  String get affirmationInstructions =>
+      'Read each statement slowly. Let the words sink in.';
+
+  @override
+  String get affirmationComplete =>
+      'You\'ve completed all affirmations. You are strong.';
+
+  @override
+  String get affirmation1 => 'I am safe';
+
+  @override
+  String get affirmation2 => 'This is just a physical reaction';
+
+  @override
+  String get affirmation3 => 'It will pass naturally';
+
+  @override
+  String get affirmation4 => 'I will wait patiently';
+
+  @override
+  String get affirmation5 => 'I accept and love myself';
+
+  @override
+  String get nextAffirmation => 'Next';
+
+  @override
+  String get calendarNoSessions => 'No sessions recorded yet';
+
+  @override
+  String get calendarTotalSessions => 'Total Sessions';
+
+  @override
+  String get calendarAverageDuration => 'Average Duration';
+
+  @override
+  String get calendarMostCommonTime => 'Most Common Time';
+
+  @override
+  String get calendarLongestStreak => 'Longest Streak';
+
+  @override
+  String get calendarDays => 'days';
+
+  @override
+  String get calendarSessionDetails => 'Session Details';
+
+  @override
+  String get calendarStartTime => 'Start Time';
+
+  @override
+  String get calendarDuration => 'Duration';
+
+  @override
+  String get calendarStepsCompleted => 'Steps Completed';
+
+  @override
+  String get cardEditorTitle => 'Edit Card';
+
+  @override
+  String get cardEditorTitleLabel => 'Title';
+
+  @override
+  String get cardEditorMainTextLabel => 'Main Text';
+
+  @override
+  String get cardEditorSubTextLabel => 'Sub Text';
+
+  @override
+  String get cardEditorButtonLabel => 'Button Text';
+
+  @override
+  String get cardEditorSave => 'Save';
+
+  @override
+  String get cardEditorReset => 'Reset to Default';
+
+  @override
+  String get cardEditorPreview => 'Preview';
+
+  @override
+  String get cardEditorUnsavedChanges => 'You have unsaved changes';
+
+  @override
+  String get cardEditorDiscardChanges => 'Discard changes?';
+
+  @override
+  String practiceStepOf(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get practiceComplete => 'Practice Complete!';
+
+  @override
+  String get practiceWellDone =>
+      'Well done! Regular practice builds resilience.';
+
+  @override
+  String get practiceNext => 'NEXT';
+
+  @override
+  String get practicePrevious => 'Previous';
+
+  @override
+  String get exportData => 'Export Data';
+
+  @override
+  String get importData => 'Import Data';
+
+  @override
+  String get exportSuccess => 'Data exported successfully';
+
+  @override
+  String get importSuccess => 'Data imported successfully';
+
+  @override
+  String get exportError => 'Failed to export data';
+
+  @override
+  String get importError => 'Failed to import data';
+
+  @override
+  String get holdToConfirm => 'Hold to confirm';
+
+  @override
+  String get skip => 'Skip';
 }

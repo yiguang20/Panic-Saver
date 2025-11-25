@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../models/session_record.dart';
 import '../sources/database_helper.dart';
 
@@ -10,6 +11,9 @@ class SessionRepository {
 
   /// Save a new session record
   Future<void> saveSession(SessionRecord session) async {
+    // Skip database operations on web (sqflite not supported)
+    if (kIsWeb) return;
+    
     final db = await _dbHelper.database;
     await db.insert(
       DatabaseHelper.tableSessionRecords,
@@ -19,6 +23,9 @@ class SessionRepository {
 
   /// Get all session records
   Future<List<SessionRecord>> getAllSessions() async {
+    // Return empty list on web (sqflite not supported)
+    if (kIsWeb) return [];
+    
     final db = await _dbHelper.database;
     final maps = await db.query(
       DatabaseHelper.tableSessionRecords,
@@ -29,6 +36,9 @@ class SessionRepository {
 
   /// Get session records for a specific date
   Future<List<SessionRecord>> getSessionsByDate(DateTime date) async {
+    // Return empty list on web (sqflite not supported)
+    if (kIsWeb) return [];
+    
     final startOfDay = DateTime(date.year, date.month, date.day);
     final endOfDay = startOfDay.add(const Duration(days: 1));
 
@@ -47,9 +57,11 @@ class SessionRepository {
 
   /// Get session records for a specific month
   Future<List<SessionRecord>> getSessionsByMonth(int year, int month) async {
+    // Return empty list on web (sqflite not supported)
+    if (kIsWeb) return [];
+    
     final startOfMonth = DateTime(year, month, 1);
     final endOfMonth = DateTime(year, month + 1, 1);
-
 
     final db = await _dbHelper.database;
     final maps = await db.query(
@@ -72,6 +84,9 @@ class SessionRepository {
 
   /// Get a single session by ID
   Future<SessionRecord?> getSessionById(String id) async {
+    // Return null on web (sqflite not supported)
+    if (kIsWeb) return null;
+    
     final db = await _dbHelper.database;
     final maps = await db.query(
       DatabaseHelper.tableSessionRecords,
@@ -85,6 +100,9 @@ class SessionRepository {
 
   /// Delete a session record
   Future<void> deleteSession(String id) async {
+    // Skip on web (sqflite not supported)
+    if (kIsWeb) return;
+    
     final db = await _dbHelper.database;
     await db.delete(
       DatabaseHelper.tableSessionRecords,
@@ -95,6 +113,9 @@ class SessionRepository {
 
   /// Delete all session records
   Future<void> deleteAllSessions() async {
+    // Skip on web (sqflite not supported)
+    if (kIsWeb) return;
+    
     final db = await _dbHelper.database;
     await db.delete(DatabaseHelper.tableSessionRecords);
   }

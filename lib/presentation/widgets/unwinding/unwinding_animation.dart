@@ -39,19 +39,21 @@ class _UnwindingAnimationState extends State<UnwindingAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: Listenable.merge([widget.controller, _rotationController]),
-      builder: (context, child) {
-        return CustomPaint(
-          size: const Size(300, 500), 
-          painter: DnaHelixPainter(
-            unwindProgress: widget.controller.value,
-            rotationValue: _rotationController.value,
-            colorA: widget.ropeColor ?? const Color(0xFF00E5FF), // 青色流光
-            colorB: widget.stickColor ?? const Color(0xFFE040FB), // 紫色流光
-          ),
-        );
-      },
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: Listenable.merge([widget.controller, _rotationController]),
+        builder: (context, child) {
+          return CustomPaint(
+            size: const Size(300, 500), 
+            painter: DnaHelixPainter(
+              unwindProgress: widget.controller.value,
+              rotationValue: _rotationController.value,
+              colorA: widget.ropeColor ?? const Color(0xFF00E5FF), // 青色流光
+              colorB: widget.stickColor ?? const Color(0xFFE040FB), // 紫色流光
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
 import 'data/repositories/preferences_repository.dart';
+import 'data/sources/database_helper.dart';
 import 'domain/providers/crisis_provider.dart';
 import 'domain/providers/language_provider.dart';
 import 'domain/providers/settings_provider.dart';
@@ -29,12 +31,19 @@ void main() async {
   );
 
   try {
+    // Initialize database (only on mobile platforms, not web)
+    if (!kIsWeb) {
+      final dbHelper = DatabaseHelper();
+      await dbHelper.database;
+    }
+
     // Initialize preferences repository
     final preferencesRepository = await PreferencesRepository.create();
 
     runApp(PanicSaverApp(preferencesRepository: preferencesRepository));
   } catch (e) {
     // If initialization fails, run app with default repository
+    debugPrint('App initialization error: $e');
     runApp(const ErrorApp());
   }
 }

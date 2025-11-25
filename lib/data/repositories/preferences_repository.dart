@@ -4,6 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferencesRepository {
   static const String _keyCurrentStep = 'current_step';
   static const String _keyLanguage = 'language';
+  static const String _keyInhaleDuration = 'inhale_duration';
+  static const String _keyHoldDuration = 'hold_duration';
+  static const String _keyExhaleDuration = 'exhale_duration';
+  static const String _keyHapticsEnabled = 'haptics_enabled';
+  static const String _keyReducedMotion = 'reduced_motion';
+  static const String _keyLastBackupDate = 'last_backup_date';
 
   final SharedPreferences _prefs;
 
@@ -83,6 +89,63 @@ class PreferencesRepository {
     } catch (e) {
       print('Error clearing state: $e');
     }
+  }
+
+  /// Save breathing settings
+  Future<void> saveBreathingSettings({
+    required double inhale,
+    required double hold,
+    required double exhale,
+  }) async {
+    await _prefs.setDouble(_keyInhaleDuration, inhale);
+    await _prefs.setDouble(_keyHoldDuration, hold);
+    await _prefs.setDouble(_keyExhaleDuration, exhale);
+  }
+
+  /// Load breathing settings
+  Map<String, double>? loadBreathingSettings() {
+    final inhale = _prefs.getDouble(_keyInhaleDuration);
+    final hold = _prefs.getDouble(_keyHoldDuration);
+    final exhale = _prefs.getDouble(_keyExhaleDuration);
+    
+    if (inhale != null && hold != null && exhale != null) {
+      return {'inhale': inhale, 'hold': hold, 'exhale': exhale};
+    }
+    return null;
+  }
+
+  /// Save haptics enabled setting
+  Future<void> saveHapticsEnabled(bool enabled) async {
+    await _prefs.setBool(_keyHapticsEnabled, enabled);
+  }
+
+  /// Load haptics enabled setting
+  bool loadHapticsEnabled() {
+    return _prefs.getBool(_keyHapticsEnabled) ?? true;
+  }
+
+  /// Save reduced motion setting
+  Future<void> saveReducedMotion(bool enabled) async {
+    await _prefs.setBool(_keyReducedMotion, enabled);
+  }
+
+  /// Load reduced motion setting
+  bool loadReducedMotion() {
+    return _prefs.getBool(_keyReducedMotion) ?? false;
+  }
+
+  /// Save last backup date
+  Future<void> saveLastBackupDate(DateTime date) async {
+    await _prefs.setInt(_keyLastBackupDate, date.millisecondsSinceEpoch);
+  }
+
+  /// Load last backup date
+  DateTime? loadLastBackupDate() {
+    final timestamp = _prefs.getInt(_keyLastBackupDate);
+    if (timestamp != null) {
+      return DateTime.fromMillisecondsSinceEpoch(timestamp);
+    }
+    return null;
   }
 
   /// Factory method to create repository with SharedPreferences instance

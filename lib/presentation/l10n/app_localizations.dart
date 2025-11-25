@@ -883,6 +883,258 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ambient'**
   String get soundAmbient;
+
+  /// No description provided for @affirmationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-Affirmation'**
+  String get affirmationTitle;
+
+  /// No description provided for @affirmationInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Read each statement slowly. Let the words sink in.'**
+  String get affirmationInstructions;
+
+  /// No description provided for @affirmationComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve completed all affirmations. You are strong.'**
+  String get affirmationComplete;
+
+  /// No description provided for @affirmation1.
+  ///
+  /// In en, this message translates to:
+  /// **'I am safe'**
+  String get affirmation1;
+
+  /// No description provided for @affirmation2.
+  ///
+  /// In en, this message translates to:
+  /// **'This is just a physical reaction'**
+  String get affirmation2;
+
+  /// No description provided for @affirmation3.
+  ///
+  /// In en, this message translates to:
+  /// **'It will pass naturally'**
+  String get affirmation3;
+
+  /// No description provided for @affirmation4.
+  ///
+  /// In en, this message translates to:
+  /// **'I will wait patiently'**
+  String get affirmation4;
+
+  /// No description provided for @affirmation5.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept and love myself'**
+  String get affirmation5;
+
+  /// No description provided for @nextAffirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get nextAffirmation;
+
+  /// No description provided for @calendarNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No sessions recorded yet'**
+  String get calendarNoSessions;
+
+  /// No description provided for @calendarTotalSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Sessions'**
+  String get calendarTotalSessions;
+
+  /// No description provided for @calendarAverageDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Duration'**
+  String get calendarAverageDuration;
+
+  /// No description provided for @calendarMostCommonTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Common Time'**
+  String get calendarMostCommonTime;
+
+  /// No description provided for @calendarLongestStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest Streak'**
+  String get calendarLongestStreak;
+
+  /// No description provided for @calendarDays.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get calendarDays;
+
+  /// No description provided for @calendarSessionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Details'**
+  String get calendarSessionDetails;
+
+  /// No description provided for @calendarStartTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Time'**
+  String get calendarStartTime;
+
+  /// No description provided for @calendarDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get calendarDuration;
+
+  /// No description provided for @calendarStepsCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps Completed'**
+  String get calendarStepsCompleted;
+
+  /// No description provided for @cardEditorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Card'**
+  String get cardEditorTitle;
+
+  /// No description provided for @cardEditorTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get cardEditorTitleLabel;
+
+  /// No description provided for @cardEditorMainTextLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Text'**
+  String get cardEditorMainTextLabel;
+
+  /// No description provided for @cardEditorSubTextLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sub Text'**
+  String get cardEditorSubTextLabel;
+
+  /// No description provided for @cardEditorButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Button Text'**
+  String get cardEditorButtonLabel;
+
+  /// No description provided for @cardEditorSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get cardEditorSave;
+
+  /// No description provided for @cardEditorReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to Default'**
+  String get cardEditorReset;
+
+  /// No description provided for @cardEditorPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get cardEditorPreview;
+
+  /// No description provided for @cardEditorUnsavedChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'You have unsaved changes'**
+  String get cardEditorUnsavedChanges;
+
+  /// No description provided for @cardEditorDiscardChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard changes?'**
+  String get cardEditorDiscardChanges;
+
+  /// No description provided for @practiceStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String practiceStepOf(int current, int total);
+
+  /// No description provided for @practiceComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Complete!'**
+  String get practiceComplete;
+
+  /// No description provided for @practiceWellDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done! Regular practice builds resilience.'**
+  String get practiceWellDone;
+
+  /// No description provided for @practiceNext.
+  ///
+  /// In en, this message translates to:
+  /// **'NEXT'**
+  String get practiceNext;
+
+  /// No description provided for @practicePrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get practicePrevious;
+
+  /// No description provided for @exportData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Data'**
+  String get exportData;
+
+  /// No description provided for @importData.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Data'**
+  String get importData;
+
+  /// No description provided for @exportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data exported successfully'**
+  String get exportSuccess;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data imported successfully'**
+  String get importSuccess;
+
+  /// No description provided for @exportError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to export data'**
+  String get exportError;
+
+  /// No description provided for @importError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to import data'**
+  String get importError;
+
+  /// No description provided for @holdToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to confirm'**
+  String get holdToConfirm;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
 }
 
 class _AppLocalizationsDelegate

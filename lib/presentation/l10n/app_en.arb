@@ -170,5 +170,59 @@
   "soundNature": "Nature",
   "soundMechanical": "Mechanical",
   "soundMusic": "Music",
-  "soundAmbient": "Ambient"
+  "soundAmbient": "Ambient",
+  
+  "affirmationTitle": "Self-Affirmation",
+  "affirmationInstructions": "Read each statement slowly. Let the words sink in.",
+  "affirmationComplete": "You've completed all affirmations. You are strong.",
+  "affirmation1": "I am safe",
+  "affirmation2": "This is just a physical reaction",
+  "affirmation3": "It will pass naturally",
+  "affirmation4": "I will wait patiently",
+  "affirmation5": "I accept and love myself",
+  "nextAffirmation": "Next",
+  
+  "calendarNoSessions": "No sessions recorded yet",
+  "calendarTotalSessions": "Total Sessions",
+  "calendarAverageDuration": "Average Duration",
+  "calendarMostCommonTime": "Most Common Time",
+  "calendarLongestStreak": "Longest Streak",
+  "calendarDays": "days",
+  "calendarSessionDetails": "Session Details",
+  "calendarStartTime": "Start Time",
+  "calendarDuration": "Duration",
+  "calendarStepsCompleted": "Steps Completed",
+  
+  "cardEditorTitle": "Edit Card",
+  "cardEditorTitleLabel": "Title",
+  "cardEditorMainTextLabel": "Main Text",
+  "cardEditorSubTextLabel": "Sub Text",
+  "cardEditorButtonLabel": "Button Text",
+  "cardEditorSave": "Save",
+  "cardEditorReset": "Reset to Default",
+  "cardEditorPreview": "Preview",
+  "cardEditorUnsavedChanges": "You have unsaved changes",
+  "cardEditorDiscardChanges": "Discard changes?",
+  
+  "practiceStepOf": "Step {current} of {total}",
+  "@practiceStepOf": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "practiceComplete": "Practice Complete!",
+  "practiceWellDone": "Well done! Regular practice builds resilience.",
+  "practiceNext": "NEXT",
+  "practicePrevious": "Previous",
+  
+  "exportData": "Export Data",
+  "importData": "Import Data",
+  "exportSuccess": "Data exported successfully",
+  "importSuccess": "Data imported successfully",
+  "exportError": "Failed to export data",
+  "importError": "Failed to import data",
+  
+  "holdToConfirm": "Hold to confirm",
+  "skip": "Skip"
 }

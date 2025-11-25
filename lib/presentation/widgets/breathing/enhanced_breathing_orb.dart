@@ -100,18 +100,19 @@ class _EnhancedBreathingOrbState extends State<EnhancedBreathingOrb>
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // Calculate orb size based on available space
-        final maxSize = constraints.maxHeight < constraints.maxWidth 
-            ? constraints.maxHeight 
-            : constraints.maxWidth;
-        final orbSize = (maxSize * 0.8).clamp(150.0, 250.0);
-        
-        return AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Center(
+    return RepaintBoundary(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Calculate orb size based on available space
+          final maxSize = constraints.maxHeight < constraints.maxWidth 
+              ? constraints.maxHeight 
+              : constraints.maxWidth;
+          final orbSize = (maxSize * 0.8).clamp(150.0, 250.0);
+          
+          return AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Center(
               child: Transform.scale(
                 scale: _scaleAnimation.value,
                 child: Opacity(
@@ -158,8 +159,9 @@ class _EnhancedBreathingOrbState extends State<EnhancedBreathingOrb>
               ),
             );
           },
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

@@ -9,6 +9,8 @@ class PracticeExercise {
   final String duration;
   final String frequency;
   final List<String> tips;
+  final String? handbookReference; // Reference to handbook chapter
+  final String? handbookChapter;   // Chapter number/name
 
   const PracticeExercise({
     required this.id,
@@ -20,5 +22,7 @@ class PracticeExercise {
     required this.duration,
     required this.frequency,
     required this.tips,
+    this.handbookReference,
+    this.handbookChapter,
   });
 }

@@ -397,4 +397,132 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get soundAmbient => '环境';
+
+  @override
+  String get affirmationTitle => '自我肯定';
+
+  @override
+  String get affirmationInstructions => '慢慢阅读每一句话。让这些话语沉淀在心中。';
+
+  @override
+  String get affirmationComplete => '你已完成所有肯定语句。你很坚强。';
+
+  @override
+  String get affirmation1 => '我很安全';
+
+  @override
+  String get affirmation2 => '这只是身体的一种反应';
+
+  @override
+  String get affirmation3 => '它会自然消退';
+
+  @override
+  String get affirmation4 => '我会耐心等待';
+
+  @override
+  String get affirmation5 => '我接纳并爱自己';
+
+  @override
+  String get nextAffirmation => '下一句';
+
+  @override
+  String get calendarNoSessions => '暂无会话记录';
+
+  @override
+  String get calendarTotalSessions => '总会话数';
+
+  @override
+  String get calendarAverageDuration => '平均时长';
+
+  @override
+  String get calendarMostCommonTime => '常见时间';
+
+  @override
+  String get calendarLongestStreak => '最长连续';
+
+  @override
+  String get calendarDays => '天';
+
+  @override
+  String get calendarSessionDetails => '会话详情';
+
+  @override
+  String get calendarStartTime => '开始时间';
+
+  @override
+  String get calendarDuration => '时长';
+
+  @override
+  String get calendarStepsCompleted => '完成步骤';
+
+  @override
+  String get cardEditorTitle => '编辑卡片';
+
+  @override
+  String get cardEditorTitleLabel => '标题';
+
+  @override
+  String get cardEditorMainTextLabel => '主要文本';
+
+  @override
+  String get cardEditorSubTextLabel => '副文本';
+
+  @override
+  String get cardEditorButtonLabel => '按钮文本';
+
+  @override
+  String get cardEditorSave => '保存';
+
+  @override
+  String get cardEditorReset => '恢复默认';
+
+  @override
+  String get cardEditorPreview => '预览';
+
+  @override
+  String get cardEditorUnsavedChanges => '有未保存的更改';
+
+  @override
+  String get cardEditorDiscardChanges => '放弃更改？';
+
+  @override
+  String practiceStepOf(int current, int total) {
+    return '步骤 $current / $total';
+  }
+
+  @override
+  String get practiceComplete => '练习完成！';
+
+  @override
+  String get practiceWellDone => '做得很好！坚持练习会让你更加从容。';
+
+  @override
+  String get practiceNext => '下一步';
+
+  @override
+  String get practicePrevious => '上一步';
+
+  @override
+  String get exportData => '导出数据';
+
+  @override
+  String get importData => '导入数据';
+
+  @override
+  String get exportSuccess => '数据导出成功';
+
+  @override
+  String get importSuccess => '数据导入成功';
+
+  @override
+  String get exportError => '数据导出失败';
+
+  @override
+  String get importError => '数据导入失败';
+
+  @override
+  String get holdToConfirm => '按住确认';
+
+  @override
+  String get skip => '跳过';
 }
