@@ -330,22 +330,30 @@
 
 ## Phase 4: 记录和日历功能
 
-- [ ] 12. 实现数据模型和存储
+- [x] 12. 实现数据模型和存储
 
 
-- [ ] 12.1 创建 SessionRecord 模型
+
+
+- [x] 12.1 创建 SessionRecord 模型
+
+
   - 定义数据结构
   - 实现序列化
   - 实现反序列化
   - _Requirements: 8.1_
 
-- [ ] 12.2 创建数据库Schema
+
+- [x] 12.2 创建数据库Schema
+
   - 设计 session_records 表
   - 添加索引
   - 实现迁移
   - _Requirements: 8.7_
 
-- [ ] 12.3 实现 SessionRepository
+
+- [x] 12.3 实现 SessionRepository
+
   - 保存会话记录
   - 查询会话记录
   - 删除会话记录
@@ -355,32 +363,44 @@
   - **Property 9: 会话记录完整性**
   - **Validates: Requirements 8.1**
 
-- [ ] 13. 实现日历视图
-- [ ] 13.1 创建 CalendarScreen
+- [x] 13. 实现日历视图
+
+
+
+- [x] 13.1 创建 CalendarScreen
+
   - 设计页面布局
   - 添加导航
   - 集成日历组件
   - _Requirements: 8.2, 8.11_
 
-- [ ] 13.2 实现 CalendarView
+
+- [x] 13.2 实现 CalendarView
+
   - 显示月历
   - 标记有记录的日期
   - 月份导航
   - _Requirements: 8.2, 8.3, 8.8_
 
-- [ ] 13.3 实现 SessionDetailSheet
+
+- [x] 13.3 实现 SessionDetailSheet
+
   - 显示会话详情
   - 格式化时间和时长
   - 显示完成步骤
   - _Requirements: 8.4_
 
-- [ ] 13.4 实现 SessionStatistics
+
+- [x] 13.4 实现 SessionStatistics
+
   - 计算总会话数
   - 计算平均时长
   - 分析常见时间
   - _Requirements: 8.6_
 
-- [ ] 13.5 优化日历UI设计
+
+- [x] 13.5 优化日历UI设计
+
   - 美观的视觉设计
   - 柔和的配色
   - 流畅的动画
@@ -390,11 +410,16 @@
   - **Property 10: 日历标记准确性**
   - **Validates: Requirements 8.3**
 
-- [ ] 14. 实现数据导出功能
-- [ ] 14.1 实现导出功能
+- [x] 14. 实现数据导出功能
+
+
+
+- [x] 14.1 实现导出功能
+
   - 生成JSON文件
   - 包含所有数据
   - _Requirements: 8.10_
+
 
 - [ ] 14.2 实现导入功能
   - 解析JSON文件
@@ -406,58 +431,77 @@
   - **Property 16: 数据导出完整性**
   - **Validates: Requirements 14.7**
 
-- [ ] 15. Checkpoint - 确保所有测试通过
+- [x] 15. Checkpoint - 确保所有测试通过
+
+
 - Ensure all tests pass, ask the user if questions arise.
 
 ## Phase 5: 卡片管理系统
 
-- [ ] 16. 实现卡片数据模型
-- [ ] 16.1 更新 CrisisCard 模型
+- [x] 16. 实现卡片数据模型
+
+
+
+- [x] 16.1 更新 CrisisCard 模型
+
   - 添加自定义字段
   - 支持启用/禁用
   - 支持排序
   - _Requirements: 9.2, 9.7, 9.8_
 
-- [ ] 16.2 创建数据库Schema
+
+- [x] 16.2 创建数据库Schema
+
   - 设计 custom_cards 表
   - 设计 affirmation_sets 表
   - _Requirements: 9.6_
 
-- [ ] 16.3 实现 CardRepository
+- [x] 16.3 实现 CardRepository
+
+
   - CRUD操作
   - 排序功能
   - _Requirements: 9.6, 9.8_
 
-- [ ] 17. 实现卡片管理界面
-- [ ] 17.1 创建 CardManagementScreen
+- [x] 17. 实现卡片管理界面
+
+- [x] 17.1 创建 CardManagementScreen
+
+
   - 显示卡片列表
   - 显示状态
   - 添加操作按钮
   - _Requirements: 9.1, 9.2_
 
-- [ ] 17.2 创建 CardEditorScreen
+
+- [x] 17.2 创建 CardEditorScreen
+
   - 编辑表单
   - 实时预览
   - 保存功能
   - _Requirements: 9.3, 9.4, 9.9_
 
-- [ ] 17.3 实现拖拽排序
+
+- [x] 17.3 实现拖拽排序
   - 拖拽手势
   - 视觉反馈
   - 保存顺序
   - _Requirements: 9.8_
 
-- [ ] 17.4 实现肯定语句编辑
+- [x] 17.4 实现肯定语句编辑
+
   - 添加/删除语句
   - 重排序
   - _Requirements: 9.5, 6.9_
 
-- [ ] 17.5 实现重置功能
+
+- [x] 17.5 实现重置功能
   - 恢复默认内容
   - 确认对话框
   - _Requirements: 9.10_
 
-- [ ] 17.6 实现验证逻辑
+
+- [x] 17.6 实现验证逻辑
   - 必填字段检查
   - 保存提示
   - _Requirements: 9.11, 9.12_
@@ -470,13 +514,16 @@
   - **Property 12: 卡片禁用跳过性**
   - **Validates: Requirements 9.7**
 
-- [ ] 18. Checkpoint - 确保所有测试通过
+- [x] 18. Checkpoint - 确保所有测试通过
+
+
+
 - Ensure all tests pass, ask the user if questions arise.
 
 ## Phase 6: Practice模块增强
 
 - [ ] 19. 增强Practice详情页面
-- [ ] 19.1 创建 PracticeDetailScreen
+- [ ] 19.1 查看 PracticeDetailScreen
   - 设计详情页面布局
   - 分步说明
   - 导航控制

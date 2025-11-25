@@ -5,6 +5,8 @@ import '../../../core/utils/haptic_utils.dart';
 import '../../../presentation/l10n/app_localizations.dart';
 import 'language_settings_screen.dart';
 import 'breathing_settings_screen.dart';
+import 'card_management_screen.dart';
+import '../calendar_screen.dart';
 
 /// Main settings screen with categorized menu
 class SettingsMainScreen extends StatelessWidget {
@@ -63,7 +65,7 @@ class SettingsMainScreen extends StatelessWidget {
               icon: Icons.edit_note,
               title: l10n.cardManagementTitle,
               subtitle: l10n.cardManagementSubtitle,
-              onTap: () => _showComingSoon(context),
+              onTap: () => _navigateToCardManagement(context),
             ),
             const SizedBox(height: AppDimensions.spacingM),
             _buildMenuCategory(
@@ -71,7 +73,7 @@ class SettingsMainScreen extends StatelessWidget {
               icon: Icons.calendar_today,
               title: l10n.calendarTitle,
               subtitle: l10n.calendarSubtitle,
-              onTap: () => _showComingSoon(context),
+              onTap: () => _navigateToCalendar(context),
             ),
             const SizedBox(height: AppDimensions.spacingM),
             _buildMenuCategory(
@@ -169,6 +171,24 @@ class SettingsMainScreen extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) => const BreathingSettingsScreen(),
+      ),
+    );
+  }
+
+  void _navigateToCalendar(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CalendarScreen(),
+      ),
+    );
+  }
+
+  void _navigateToCardManagement(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CardManagementScreen(),
       ),
     );
   }
