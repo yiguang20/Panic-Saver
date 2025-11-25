@@ -152,50 +152,37 @@ class _CrisisCardState extends State<CrisisCard> {
           ),
         ),
         
-        // Breathing reminder - top left (except for breathing step)
+        // Breathing reminder - top left (no background)
         if (currentStepData.type != CrisisStepType.breathing)
           Positioned(
-            top: AppDimensions.spacingS,
-            left: AppDimensions.spacingS,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimensions.spacingM,
-                vertical: AppDimensions.spacingS,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.aqua.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-                border: Border.all(
-                  color: AppColors.aqua.withValues(alpha: 0.3),
+            top: AppDimensions.spacingM,
+            left: AppDimensions.spacingM,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.air,
+                  color: AppColors.aqua,
+                  size: 16,
                 ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.air,
+                const SizedBox(width: AppDimensions.spacingXs),
+                Text(
+                  isChinese ? '保持深呼吸' : 'Keep breathing',
+                  style: TextStyle(
                     color: AppColors.aqua,
-                    size: 14,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
-                  const SizedBox(width: AppDimensions.spacingXs),
-                  Text(
-                    isChinese ? '保持深呼吸' : 'Keep breathing deeply',
-                    style: TextStyle(
-                      color: AppColors.aqua,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         
-        // Skip button - top right
+        // Skip button - top right (no background)
         Positioned(
-          top: AppDimensions.spacingS,
-          right: AppDimensions.spacingS,
-          child: InkWell(
+          top: AppDimensions.spacingM,
+          right: AppDimensions.spacingM,
+          child: GestureDetector(
             onTap: () {
               if (crisisProvider.currentStep == crisisProvider.totalSteps - 1) {
                 crisisProvider.resetSteps();
@@ -203,21 +190,24 @@ class _CrisisCardState extends State<CrisisCard> {
                 crisisProvider.nextStep();
               }
             },
-            borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-            child: Container(
-              padding: const EdgeInsets.all(AppDimensions.spacingS),
-              decoration: BoxDecoration(
-                color: AppColors.whiteWithOpacity(0.1),
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.whiteWithOpacity(0.3),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isChinese ? '跳过' : 'Skip',
+                  style: TextStyle(
+                    color: AppColors.whiteWithOpacity(0.6),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              child: Icon(
-                Icons.skip_next,
-                color: Colors.white.withValues(alpha: 0.7),
-                size: 20,
-              ),
+                const SizedBox(width: AppDimensions.spacingXs),
+                Icon(
+                  Icons.skip_next,
+                  color: AppColors.whiteWithOpacity(0.6),
+                  size: 16,
+                ),
+              ],
             ),
           ),
         ),
@@ -226,35 +216,104 @@ class _CrisisCardState extends State<CrisisCard> {
   }
 
   Widget _buildSpecialCard(CrisisProvider crisisProvider, CrisisStep currentStepData) {
-    return Container(
-      padding: const EdgeInsets.all(AppDimensions.spacingL),
-      decoration: BoxDecoration(
-        color: AppColors.whiteWithOpacity(0.08),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusXl),
-        border: Border.all(
-          color: AppColors.whiteWithOpacity(0.15),
+    final locale = Localizations.localeOf(context).languageCode;
+    final isChinese = locale == 'zh';
+    
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(AppDimensions.spacingL),
+          decoration: BoxDecoration(
+            color: AppColors.whiteWithOpacity(0.08),
+            borderRadius: BorderRadius.circular(AppDimensions.radiusXl),
+            border: Border.all(
+              color: AppColors.whiteWithOpacity(0.15),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 25,
+                offset: const Offset(0, 12),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              // Top spacing for buttons
+              const SizedBox(height: AppDimensions.spacingL),
+              
+              // Progress indicator
+              _buildProgressIndicator(crisisProvider),
+
+              const SizedBox(height: AppDimensions.spacingL),
+
+              // Special card content
+              Expanded(
+                child: _buildSpecialCardContent(crisisProvider, currentStepData),
+              ),
+            ],
+          ),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 25,
-            offset: const Offset(0, 12),
+        
+        // Breathing reminder - top left (no background)
+        Positioned(
+          top: AppDimensions.spacingM,
+          left: AppDimensions.spacingM,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.air,
+                color: AppColors.aqua,
+                size: 16,
+              ),
+              const SizedBox(width: AppDimensions.spacingXs),
+              Text(
+                isChinese ? '保持深呼吸' : 'Keep breathing',
+                style: TextStyle(
+                  color: AppColors.aqua,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // Progress indicator
-          _buildProgressIndicator(crisisProvider),
-
-          const SizedBox(height: AppDimensions.spacingL),
-
-          // Special card content
-          Expanded(
-            child: _buildSpecialCardContent(crisisProvider, currentStepData),
+        ),
+        
+        // Skip button - top right (no background)
+        Positioned(
+          top: AppDimensions.spacingM,
+          right: AppDimensions.spacingM,
+          child: GestureDetector(
+            onTap: () {
+              if (crisisProvider.currentStep == crisisProvider.totalSteps - 1) {
+                crisisProvider.resetSteps();
+              } else {
+                crisisProvider.nextStep();
+              }
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isChinese ? '跳过' : 'Skip',
+                  style: TextStyle(
+                    color: AppColors.whiteWithOpacity(0.6),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(width: AppDimensions.spacingXs),
+                Icon(
+                  Icons.skip_next,
+                  color: AppColors.whiteWithOpacity(0.6),
+                  size: 16,
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -298,157 +357,73 @@ class _CrisisCardState extends State<CrisisCard> {
   }
 
   Widget _buildBreathingCard(CrisisProvider crisisProvider, CrisisStep currentStepData) {
-    final locale = Localizations.localeOf(context).languageCode;
-    final isChinese = locale == 'zh';
-    
     return Consumer<SettingsProvider>(
       builder: (context, settings, _) {
-        return Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.spacingM),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Top spacing for buttons
-                    const SizedBox(height: AppDimensions.spacingXl),
-                    
-                    // Title
-                    Text(
-                      currentStepData.title,
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Title
+              Text(
+                currentStepData.title,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: AppDimensions.spacingS),
-                    
-                    // Subtitle
-                    Text(
-                      currentStepData.text,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.whiteWithOpacity(0.8),
-                          ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: AppDimensions.spacingS),
+              
+              // Subtitle
+              Text(
+                currentStepData.text,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.whiteWithOpacity(0.8),
                     ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
 
-                    const SizedBox(height: AppDimensions.spacingL),
+              const SizedBox(height: AppDimensions.spacingL),
 
-                    // Enhanced breathing orb with fixed height
-                    SizedBox(
-                      height: 250,
-                      child: EnhancedBreathingOrb(
-                        inhaleSeconds: settings.breathingSettings.inhaleDuration.toInt(),
-                        holdSeconds: settings.breathingSettings.holdDuration.toInt(),
-                        exhaleSeconds: settings.breathingSettings.exhaleDuration.toInt(),
-                      ),
-                    ),
-
-                    const SizedBox(height: AppDimensions.spacingL),
-
-                    // Action button
-                    HoldToConfirmButton(
-                      label: currentStepData.buttonText,
-                      onConfirm: () {
-                        if (crisisProvider.currentStep == crisisProvider.totalSteps - 1) {
-                          crisisProvider.resetSteps();
-                        } else {
-                          crisisProvider.nextStep();
-                        }
-                      },
-                      showSkipButton: false,
-                    ),
-
-                    const SizedBox(height: AppDimensions.spacingS),
-
-                    // Hint text
-                    Text(
-                      'Double tap screen for Help Letter',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.whiteWithOpacity(0.2),
-                            fontSize: 10,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    
-                    const SizedBox(height: AppDimensions.spacingS),
-                  ],
+              // Enhanced breathing orb with fixed height
+              SizedBox(
+                height: 200,
+                child: EnhancedBreathingOrb(
+                  inhaleSeconds: settings.breathingSettings.inhaleDuration.toInt(),
+                  holdSeconds: settings.breathingSettings.holdDuration.toInt(),
+                  exhaleSeconds: settings.breathingSettings.exhaleDuration.toInt(),
                 ),
               ),
-            ),
-            
-            // Breathing reminder - top left
-            Positioned(
-              top: AppDimensions.spacingS,
-              left: AppDimensions.spacingS,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.spacingM,
-                  vertical: AppDimensions.spacingS,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.aqua.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-                  border: Border.all(
-                    color: AppColors.aqua.withValues(alpha: 0.3),
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.air,
-                      color: AppColors.aqua,
-                      size: 14,
-                    ),
-                    const SizedBox(width: AppDimensions.spacingXs),
-                    Text(
-                      isChinese ? '保持深呼吸' : 'Keep breathing deeply',
-                      style: TextStyle(
-                        color: AppColors.aqua,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            
-            // Skip button - top right
-            Positioned(
-              top: AppDimensions.spacingS,
-              right: AppDimensions.spacingS,
-              child: InkWell(
-                onTap: () {
+
+              const SizedBox(height: AppDimensions.spacingL),
+
+              // Action button
+              HoldToConfirmButton(
+                label: currentStepData.buttonText,
+                onConfirm: () {
                   if (crisisProvider.currentStep == crisisProvider.totalSteps - 1) {
                     crisisProvider.resetSteps();
                   } else {
                     crisisProvider.nextStep();
                   }
                 },
-                borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-                child: Container(
-                  padding: const EdgeInsets.all(AppDimensions.spacingS),
-                  decoration: BoxDecoration(
-                    color: AppColors.whiteWithOpacity(0.1),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.whiteWithOpacity(0.3),
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.skip_next,
-                    color: Colors.white.withValues(alpha: 0.7),
-                    size: 20,
-                  ),
-                ),
+                showSkipButton: false,
               ),
-            ),
-          ],
+
+              const SizedBox(height: AppDimensions.spacingS),
+
+              // Hint text
+              Text(
+                'Double tap screen for Help Letter',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.whiteWithOpacity(0.2),
+                      fontSize: 10,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         );
       },
     );

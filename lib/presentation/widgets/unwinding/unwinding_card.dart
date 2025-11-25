@@ -28,15 +28,13 @@ class _UnwindingCardState extends State<UnwindingCard>
   @override
   void initState() {
     super.initState();
-    
-    // Animation for the unwinding rope
+
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 120), // 60 seconds for 100 to 0
+      duration: const Duration(seconds: 120),
     );
 
     _animationController.addListener(() {
-      // Update countdown number based on animation progress
       final newNumber = (100 - (_animationController.value * 100)).round();
       if (newNumber != _currentNumber && newNumber >= 0) {
         setState(() {
@@ -53,7 +51,6 @@ class _UnwindingCardState extends State<UnwindingCard>
       }
     });
 
-    // Start animation
     _animationController.forward();
   }
 
@@ -66,169 +63,75 @@ class _UnwindingCardState extends State<UnwindingCard>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
+    final isChinese = locale == 'zh';
 
-    return Stack(
+    // No top buttons here - they are in the parent _buildSpecialCard
+    return Column(
       children: [
-        // Main content
-        Padding(
-          padding: const EdgeInsets.all(AppDimensions.spacingL),
-          child: Column(
-            children: [
-              // Top spacing for breathing reminder
-              const SizedBox(height: AppDimensions.spacingXl),
-              
-              // Title
-              Text(
-                l10n.unwindingTitle,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+        // Title
+        Text(
+          l10n.unwindingTitle,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
-              
-              const SizedBox(height: AppDimensions.spacingS),
-              
-              // Instructions
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.spacingM),
-                child: Text(
-                  l10n.unwindingInstructions,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.whiteWithOpacity(0.8),
-                      ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-
-              const SizedBox(height: AppDimensions.spacingL),
-
-              // Unwinding animation and countdown
-              Expanded(
-                child: Center(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Unwinding rope animation
-                      UnwindingAnimation(
-                        controller: _animationController,
-                      ),
-                      
-                      // Countdown number overlay
-                      CountdownDisplay(
-                        currentNumber: _currentNumber,
-                        isCompleted: _isCompleted,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: AppDimensions.spacingM),
-
-              // Completion message or progress
-              if (_isCompleted) ...[
-                Text(
-                  l10n.unwindingComplete,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.success,
-                        fontWeight: FontWeight.bold,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                if (widget.onComplete != null) ...[
-                  const SizedBox(height: AppDimensions.spacingM),
-                  ElevatedButton(
-                    onPressed: widget.onComplete,
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimensions.spacingXl,
-                        vertical: AppDimensions.spacingM,
-                      ),
-                    ),
-                    child: Text(
-                      Localizations.localeOf(context).languageCode == 'zh' 
-                          ? '继续' 
-                          : 'Continue',
-                    ),
-                  ),
-                ],
-              ] else
-                Text(
-                  '$_currentNumber%',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.whiteWithOpacity(0.5),
-                      ),
-                ),
-              
-              const SizedBox(height: AppDimensions.spacingM),
-            ],
-          ),
         ),
-        
-        // Breathing reminder - top left
-        Positioned(
-          top: AppDimensions.spacingS,
-          left: AppDimensions.spacingS,
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.spacingM,
-              vertical: AppDimensions.spacingS,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.aqua.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-              border: Border.all(
-                color: AppColors.aqua.withValues(alpha: 0.3),
+        const SizedBox(height: AppDimensions.spacingS),
+
+        // Instructions
+        Text(
+          l10n.unwindingInstructions,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: AppColors.whiteWithOpacity(0.7),
               ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: AppDimensions.spacingL),
+
+        // Unwinding animation and countdown
+        Expanded(
+          child: Center(
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                Icon(
-                  Icons.air,
-                  color: AppColors.aqua,
-                  size: 14,
-                ),
-                const SizedBox(width: AppDimensions.spacingXs),
-                Text(
-                  l10n.breathingReminder,
-                  style: TextStyle(
-                    color: AppColors.aqua,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
+                UnwindingAnimation(controller: _animationController),
+                CountdownDisplay(
+                  currentNumber: _currentNumber,
+                  isCompleted: _isCompleted,
                 ),
               ],
             ),
           ),
         ),
-        
-        // Skip button - top right
-        if (widget.onComplete != null)
-          Positioned(
-            top: AppDimensions.spacingS,
-            right: AppDimensions.spacingS,
-            child: InkWell(
-              onTap: widget.onComplete,
-              borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-              child: Container(
-                padding: const EdgeInsets.all(AppDimensions.spacingS),
-                decoration: BoxDecoration(
-                  color: AppColors.whiteWithOpacity(0.1),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppColors.whiteWithOpacity(0.3),
-                  ),
+
+        const SizedBox(height: AppDimensions.spacingM),
+
+        // Completion message or progress
+        if (_isCompleted) ...[
+          Text(
+            l10n.unwindingComplete,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: AppColors.success,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Icon(
-                  Icons.skip_next,
-                  color: Colors.white.withValues(alpha: 0.7),
-                  size: 20,
-                ),
-              ),
+            textAlign: TextAlign.center,
+          ),
+          if (widget.onComplete != null) ...[
+            const SizedBox(height: AppDimensions.spacingM),
+            ElevatedButton(
+              onPressed: widget.onComplete,
+              child: Text(isChinese ? '继续' : 'Continue'),
             ),
+          ],
+        ] else
+          Text(
+            '$_currentNumber%',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.whiteWithOpacity(0.5),
+                ),
           ),
       ],
     );
