@@ -32,9 +32,16 @@ void main() async {
 
   try {
     // Initialize database (only on mobile platforms, not web)
+    // Database initialization is optional - app works without it
     if (!kIsWeb) {
-      final dbHelper = DatabaseHelper();
-      await dbHelper.database;
+      try {
+        final dbHelper = DatabaseHelper();
+        await dbHelper.database;
+        debugPrint('Database initialized successfully');
+      } catch (dbError) {
+        // Database init failed, but app can still run without it
+        debugPrint('Database initialization failed (non-fatal): $dbError');
+      }
     }
 
     // Initialize preferences repository
@@ -42,7 +49,7 @@ void main() async {
 
     runApp(PanicSaverApp(preferencesRepository: preferencesRepository));
   } catch (e) {
-    // If initialization fails, run app with default repository
+    // If critical initialization fails, show error app
     debugPrint('App initialization error: $e');
     runApp(const ErrorApp());
   }

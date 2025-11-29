@@ -1,4 +1,7 @@
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
 
 /// Database helper for managing SQLite database
@@ -14,6 +17,8 @@ class DatabaseHelper {
   // Singleton instance
   static DatabaseHelper? _instance;
   static Database? _database;
+  static bool _initializationFailed = false;
+  static bool _ffiInitialized = false;
 
   DatabaseHelper._internal();
 
@@ -22,23 +27,59 @@ class DatabaseHelper {
     return _instance!;
   }
 
+  /// Check if database initialization failed
+  bool get initializationFailed => _initializationFailed;
+
+  /// Initialize FFI for desktop platforms
+  static void _initFfi() {
+    if (_ffiInitialized) return;
+    
+    // Initialize FFI for Windows, Linux, macOS
+    if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+      debugPrint('SQLite FFI initialized for desktop platform');
+    }
+    _ffiInitialized = true;
+  }
+
   /// Get database instance
   Future<Database> get database async {
-    _database ??= await _initDatabase();
-    return _database!;
+    if (_initializationFailed) {
+      throw Exception('Database initialization previously failed');
+    }
+    
+    try {
+      _database ??= await _initDatabase();
+      return _database!;
+    } catch (e) {
+      _initializationFailed = true;
+      debugPrint('Database initialization error: $e');
+      rethrow;
+    }
   }
 
   /// Initialize database
   Future<Database> _initDatabase() async {
-    final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, _databaseName);
+    try {
+      // Initialize FFI for desktop platforms
+      _initFfi();
+      
+      final databasesPath = await getDatabasesPath();
+      final path = join(databasesPath, _databaseName);
 
-    return await openDatabase(
-      path,
-      version: _databaseVersion,
-      onCreate: _onCreate,
-      onUpgrade: _onUpgrade,
-    );
+      debugPrint('Initializing database at: $path');
+
+      return await openDatabase(
+        path,
+        version: _databaseVersion,
+        onCreate: _onCreate,
+        onUpgrade: _onUpgrade,
+      );
+    } catch (e) {
+      debugPrint('Failed to initialize database: $e');
+      rethrow;
+    }
   }
 
   /// Create database tables

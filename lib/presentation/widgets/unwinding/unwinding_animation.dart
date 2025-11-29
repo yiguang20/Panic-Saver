@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class UnwindingAnimation extends StatefulWidget {
   final AnimationController controller;
-  // 兼容旧参数，实际使用内部默认霓虹色
-  final Color? ropeColor; 
+  final Color? ropeColor;
   final Color? stickColor;
 
   const UnwindingAnimation({
@@ -27,8 +26,8 @@ class _UnwindingAnimationState extends State<UnwindingAnimation>
     super.initState();
     _rotationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
-    )..repeat(); // 让DNA持续自转
+      duration: const Duration(seconds: 8),
+    )..repeat();
   }
 
   @override
@@ -44,12 +43,12 @@ class _UnwindingAnimationState extends State<UnwindingAnimation>
         animation: Listenable.merge([widget.controller, _rotationController]),
         builder: (context, child) {
           return CustomPaint(
-            size: const Size(300, 500), 
-            painter: DnaHelixPainter(
+            size: const Size(300, 600),
+            painter: TightRopePainter(
               unwindProgress: widget.controller.value,
               rotationValue: _rotationController.value,
-              colorA: widget.ropeColor ?? const Color(0xFF00E5FF), // 青色流光
-              colorB: widget.stickColor ?? const Color(0xFFE040FB), // 紫色流光
+              colorA: widget.ropeColor ?? const Color(0xFF00E5FF),
+              colorB: widget.stickColor ?? const Color(0xFFD500F9),
             ),
           );
         },
@@ -58,18 +57,19 @@ class _UnwindingAnimationState extends State<UnwindingAnimation>
   }
 }
 
-class DnaHelixPainter extends CustomPainter {
+class TightRopePainter extends CustomPainter {
   final double unwindProgress;
   final double rotationValue;
   final Color colorA;
   final Color colorB;
 
-  // 配置参数
-  static const int particleCount = 42; 
-  static const double baseRadius = 40.0;
-  static const double verticalSpacing = 11.0;
+  // --- 配置区域 ---
+  static const int particleCount = 100;
+  static const double verticalSpacing = 5.0;
+  static const double baseRadius = 30.0;
+  static const double waveFrequency = 0.45;
 
-  DnaHelixPainter({
+  TightRopePainter({
     required this.unwindProgress,
     required this.rotationValue,
     required this.colorA,
@@ -79,162 +79,194 @@ class DnaHelixPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final centerX = size.width / 2;
-    // 让整体稍微靠下一点，留出顶部飘散空间
-    final contentHeight = particleCount * verticalSpacing;
-    final startY = (size.height - contentHeight) / 2 + contentHeight + 20;
+    final ropeHeight = particleCount * verticalSpacing;
+    final startY = size.height - (size.height - ropeHeight) / 2;
 
-    List<_DnaParticle> particles = [];
+    List<_RopeParticle> particles = [];
 
     for (int i = 0; i < particleCount; i++) {
-      // 归一化索引
       final double indexRatio = i / particleCount;
-      
-      // 计算解旋阈值：1.0 - progress 代表剩下的完整部分
-      final double activeLimit = 1.0 - unwindProgress;
-      
-      bool isUnraveling = indexRatio > activeLimit;
-      
-      // unravelFactor: 0.0 (未解开) -> 1.0 (完全解开)
+
+      // 1. 计算解开阈值
+      // 线性一点，让解开的过程均匀
+      final double activeHeightLimit = 1.0 - unwindProgress;
+
+      // 判断状态
+      bool isReleased = indexRatio > activeHeightLimit;
+
+      // unravelFactor: 0.0 (绳子上) -> 很大 (飞远)
       double unravelFactor = 0.0;
-      if (isUnraveling) {
-         // 使用较小的乘数让过渡稍微平滑一点点，防止瞬间跳变，
-         // 但后续会用这个因子做激进的透明度计算
-         double distinctness = (indexRatio - activeLimit) * 3.5;
-         unravelFactor = distinctness.clamp(0.0, 1.0);
+      if (isReleased) {
+        // 计算脱离程度
+        unravelFactor = (indexRatio - activeHeightLimit) * 2.5;
       }
 
-      // --- 核心修改：透明度控制逻辑 ---
+      // --- 透明度控制 ---
+      // 粒子飞出一段距离后彻底消失，防止堆积
+      double particleAlpha = (1.0 - unravelFactor * 0.8).clamp(0.0, 1.0);
+      if (particleAlpha <= 0.001) continue;
 
-      // 1. 粒子透明度：加速消失
-      // 乘以 1.8 意味着粒子飞出路程的 55% 左右就会完全消失
-      double particleAlpha = (1.0 - unravelFactor * 1.8).clamp(0.0, 1.0);
+      // --- 物理位置计算 ---
 
-      // 2. 连接键透明度：极速断裂
-      // 乘以 6.0 意味着只要有一点点解开的趋势 (16%的进度)，连接线就立刻消失
-      // 视觉上会造成"啪"一下断开的效果
-      double connectionAlpha = (1.0 - unravelFactor * 6.0).clamp(0.0, 1.0);
-
-      // 如果粒子已经完全看不见了，就不处理了，节省性能
-      if (particleAlpha <= 0.0) continue;
-
-      // 物理位置计算
+      // A. 基础 Y 坐标
       final double yBase = startY - (i * verticalSpacing);
-      // 稍微增加向上漂浮的速度 (* 100)
-      final double yPos = yBase - (unravelFactor * 100); 
-      
-      // 旋转角度
-      final double angle = (i * 0.55) + (rotationValue * math.pi * 2);
 
-      // 半径扩散：解开时半径迅速变大
-      final double currentRadius = baseRadius + (unravelFactor * 140); 
-      
-      // 3D 坐标转换
-      double zA = math.cos(angle); 
-      double xA = centerX + math.sin(angle) * currentRadius;
-      
-      double zB = math.cos(angle + math.pi); 
-      double xB = centerX + math.sin(angle + math.pi) * currentRadius;
+      // B. 旋转计算 (仅用于未解开部分和 Z轴深度)
+      final double baseAngle =
+          (i * waveFrequency) + (rotationValue * math.pi * 2);
+
+      // 原始螺旋位置 (Bound State)
+      double rotXA = centerX + math.sin(baseAngle) * baseRadius;
+      double rotXB = centerX + math.sin(baseAngle + math.pi) * baseRadius;
+
+      // 深度 (Z) 始终保持旋转感，这样飞出的粒子也有大小变化，看起来立体
+      double zA = math.cos(baseAngle);
+      double zB = math.cos(baseAngle + math.pi);
+
+      // --- 核心修正：强制直线逸散 ---
+
+      // C. 直线飞行位置 (Straight Flight State)
+      // 设定为：从绳子边缘(Radius)处开始，直接向外延伸
+      // 这里的 180.0 是向左右扩散的力度
+      double straightXA =
+          centerX - baseRadius - (unravelFactor * 180.0); // 左股强制往左
+      double straightXB =
+          centerX + baseRadius + (unravelFactor * 180.0); // 右股强制往右
+
+      // D. 向上升腾
+      double straightY = yBase - (unravelFactor * 250.0);
+
+      // --- E. 状态切换 (Transition) ---
+
+      double finalXA, finalXB, finalY;
+
+      if (!isReleased) {
+        // 1. 未解开：严格贴合螺旋
+        finalXA = rotXA;
+        finalXB = rotXB;
+        finalY = yBase;
+      } else {
+        // 2. 已解开：
+        // 我们需要一个极短的过渡，防止粒子瞬间瞬移 (Snap)
+        // 这个 transition 因子在解开的头 10% 距离内，从 0 变到 1
+        // 作用是将旋转的粒子快速"拉平"到直线轨迹上
+        double transition = (unravelFactor * 10.0).clamp(0.0, 1.0);
+
+        // 使用 lerp 快速修正位置
+        finalXA = _lerp(rotXA, straightXA, transition);
+        finalXB = _lerp(rotXB, straightXB, transition);
+        finalY = _lerp(yBase, straightY, transition);
+
+        // 飞出后，Z轴深度逐渐归零(变平)，不再有前后遮挡
+        zA = _lerp(zA, 0.0, transition);
+        zB = _lerp(zB, 0.0, transition);
+      }
+
+      // 连接线：一旦解开，瞬间消失
+      double connectionAlpha = (1.0 - unravelFactor * 20.0).clamp(0.0, 1.0);
 
       // --- 添加粒子 ---
 
-      // 连接线 (Bond)
-      // 只有当 connectionAlpha 还有值时才添加
-      if (connectionAlpha > 0.05) {
-        particles.add(_DnaParticle(
-          type: _ParticleType.connection,
-          x: xA, y: yPos, z: (zA + zB) / 2,
-          x2: xB, y2: yPos,
-          // 连接线的基础透明度本来就低一点(0.3)，现在还要乘以快速衰减系数
-          opacity: connectionAlpha * 0.3, 
-          color: Colors.white,
-        ));
+      if (connectionAlpha > 0.0) {
+        particles.add(
+          _RopeParticle(
+            type: _ParticleType.connection,
+            x: finalXA,
+            y: finalY,
+            z: zA,
+            x2: finalXB,
+            y2: finalY,
+            opacity: connectionAlpha * 0.6,
+            color: Colors.white,
+          ),
+        );
       }
 
-      // Strand A (Dot)
-      particles.add(_DnaParticle(
-        type: _ParticleType.dot,
-        x: xA, y: yPos, z: zA,
-        color: colorA,
-        opacity: particleAlpha,
-        // 飞出时稍微变大一点点，增加能量感
-        scale: 1.0 + unravelFactor * 0.8, 
-      ));
+      particles.add(
+        _RopeParticle(
+          type: _ParticleType.dot,
+          x: finalXA,
+          y: finalY,
+          z: zA,
+          color: colorA,
+          opacity: particleAlpha,
+          scale: 0.8,
+        ),
+      );
 
-      // Strand B (Dot)
-      particles.add(_DnaParticle(
-        type: _ParticleType.dot,
-        x: xB, y: yPos, z: zB,
-        color: colorB,
-        opacity: particleAlpha,
-        scale: 1.0 + unravelFactor * 0.8,
-      ));
+      particles.add(
+        _RopeParticle(
+          type: _ParticleType.dot,
+          x: finalXB,
+          y: finalY,
+          z: zB,
+          color: colorB,
+          opacity: particleAlpha,
+          scale: 0.8,
+        ),
+      );
     }
 
-    // 排序：处理遮挡关系 (Painter's Algorithm)
+    // 排序
     particles.sort((a, b) => a.z.compareTo(b.z));
 
-    // 绘制循环
+    // 绘制
     for (var p in particles) {
-      // 深度透视计算
-      final double perspective = 0.8 + (p.z + 1) * 0.2; // 0.8 ~ 1.2
-      
-      // 最终透明度结合深度 (远处的暗一点)
-      double finalAlpha = p.opacity * (0.6 + (p.z + 1) * 0.2);
-      finalAlpha = finalAlpha.clamp(0.0, 1.0);
+      final double perspective = 0.85 + (p.z + 1) * 0.15;
+      double finalAlpha = p.opacity;
+      if (p.z < 0) finalAlpha *= 0.8;
 
       if (p.type == _ParticleType.connection) {
         final Paint linePaint = Paint()
           ..color = p.color!.withOpacity(finalAlpha)
-          ..strokeWidth = 1.5 * perspective
+          ..strokeWidth = 1.0 * perspective
           ..strokeCap = StrokeCap.round;
-        
         canvas.drawLine(Offset(p.x, p.y), Offset(p.x2!, p.y2!), linePaint);
-      
       } else {
-        final double radius = 3.5 * perspective * p.scale;
+        final double radius = 4.0 * perspective * p.scale;
         final Paint dotPaint = Paint()
           ..color = p.color!.withOpacity(finalAlpha)
           ..style = PaintingStyle.fill;
-        
-        // 绘制光晕 (Bloom)
-        // 只有比较亮的前排粒子才画光晕，性能更好且画面不脏
-        if (finalAlpha > 0.3) {
+
+        if (finalAlpha > 0.4) {
           canvas.drawCircle(
-            Offset(p.x, p.y), 
-            radius * 1.8, 
-            Paint()..color = p.color!.withOpacity(finalAlpha * 0.4)
-                   ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3.0)
+            Offset(p.x, p.y),
+            radius * 1.6,
+            Paint()
+              ..color = p.color!.withOpacity(finalAlpha * 0.5)
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3.5),
           );
         }
-
-        // 绘制核心实体
         canvas.drawCircle(Offset(p.x, p.y), radius, dotPaint);
       }
     }
   }
 
+  double _lerp(double start, double end, double t) {
+    return start + (end - start) * t;
+  }
+
   @override
-  bool shouldRepaint(covariant DnaHelixPainter oldDelegate) {
-    return oldDelegate.unwindProgress != unwindProgress || 
-           oldDelegate.rotationValue != rotationValue;
+  bool shouldRepaint(covariant TightRopePainter oldDelegate) {
+    return oldDelegate.unwindProgress != unwindProgress ||
+        oldDelegate.rotationValue != rotationValue;
   }
 }
 
-// 辅助类
 enum _ParticleType { dot, connection }
 
-class _DnaParticle {
+class _RopeParticle {
   final _ParticleType type;
   final double x;
   final double y;
-  final double z; 
-  final double? x2; 
-  final double? y2; 
+  final double z;
+  final double? x2;
+  final double? y2;
   final Color? color;
   final double opacity;
   final double scale;
 
-  _DnaParticle({
+  _RopeParticle({
     required this.type,
     required this.x,
     required this.y,

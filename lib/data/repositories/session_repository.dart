@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb, debugPrint;
 import '../models/session_record.dart';
 import '../sources/database_helper.dart';
 
@@ -14,11 +14,16 @@ class SessionRepository {
     // Skip database operations on web (sqflite not supported)
     if (kIsWeb) return;
     
-    final db = await _dbHelper.database;
-    await db.insert(
-      DatabaseHelper.tableSessionRecords,
-      session.toJson(),
-    );
+    try {
+      final db = await _dbHelper.database;
+      await db.insert(
+        DatabaseHelper.tableSessionRecords,
+        session.toJson(),
+      );
+    } catch (e) {
+      debugPrint('Error saving session: $e');
+      // Don't rethrow - fail silently to prevent crashes
+    }
   }
 
   /// Get all session records
@@ -26,12 +31,17 @@ class SessionRepository {
     // Return empty list on web (sqflite not supported)
     if (kIsWeb) return [];
     
-    final db = await _dbHelper.database;
-    final maps = await db.query(
-      DatabaseHelper.tableSessionRecords,
-      orderBy: 'startTime DESC',
-    );
-    return maps.map((map) => SessionRecord.fromJson(map)).toList();
+    try {
+      final db = await _dbHelper.database;
+      final maps = await db.query(
+        DatabaseHelper.tableSessionRecords,
+        orderBy: 'startTime DESC',
+      );
+      return maps.map((map) => SessionRecord.fromJson(map)).toList();
+    } catch (e) {
+      debugPrint('Error getting all sessions: $e');
+      return [];
+    }
   }
 
   /// Get session records for a specific date
@@ -39,47 +49,63 @@ class SessionRepository {
     // Return empty list on web (sqflite not supported)
     if (kIsWeb) return [];
     
-    final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay = startOfDay.add(const Duration(days: 1));
+    try {
+      final startOfDay = DateTime(date.year, date.month, date.day);
+      final endOfDay = startOfDay.add(const Duration(days: 1));
 
-    final db = await _dbHelper.database;
-    final maps = await db.query(
-      DatabaseHelper.tableSessionRecords,
-      where: 'startTime >= ? AND startTime < ?',
-      whereArgs: [
-        startOfDay.millisecondsSinceEpoch,
-        endOfDay.millisecondsSinceEpoch,
-      ],
-      orderBy: 'startTime DESC',
-    );
-    return maps.map((map) => SessionRecord.fromJson(map)).toList();
+      final db = await _dbHelper.database;
+      final maps = await db.query(
+        DatabaseHelper.tableSessionRecords,
+        where: 'startTime >= ? AND startTime < ?',
+        whereArgs: [
+          startOfDay.millisecondsSinceEpoch,
+          endOfDay.millisecondsSinceEpoch,
+        ],
+        orderBy: 'startTime DESC',
+      );
+      return maps.map((map) => SessionRecord.fromJson(map)).toList();
+    } catch (e) {
+      debugPrint('Error getting sessions by date: $e');
+      return [];
+    }
   }
+
 
   /// Get session records for a specific month
   Future<List<SessionRecord>> getSessionsByMonth(int year, int month) async {
     // Return empty list on web (sqflite not supported)
     if (kIsWeb) return [];
     
-    final startOfMonth = DateTime(year, month, 1);
-    final endOfMonth = DateTime(year, month + 1, 1);
+    try {
+      final startOfMonth = DateTime(year, month, 1);
+      final endOfMonth = DateTime(year, month + 1, 1);
 
-    final db = await _dbHelper.database;
-    final maps = await db.query(
-      DatabaseHelper.tableSessionRecords,
-      where: 'startTime >= ? AND startTime < ?',
-      whereArgs: [
-        startOfMonth.millisecondsSinceEpoch,
-        endOfMonth.millisecondsSinceEpoch,
-      ],
-      orderBy: 'startTime DESC',
-    );
-    return maps.map((map) => SessionRecord.fromJson(map)).toList();
+      final db = await _dbHelper.database;
+      final maps = await db.query(
+        DatabaseHelper.tableSessionRecords,
+        where: 'startTime >= ? AND startTime < ?',
+        whereArgs: [
+          startOfMonth.millisecondsSinceEpoch,
+          endOfMonth.millisecondsSinceEpoch,
+        ],
+        orderBy: 'startTime DESC',
+      );
+      return maps.map((map) => SessionRecord.fromJson(map)).toList();
+    } catch (e) {
+      debugPrint('Error getting sessions by month: $e');
+      return [];
+    }
   }
 
   /// Get dates with sessions for a specific month (for calendar markers)
   Future<Set<DateTime>> getDatesWithSessions(int year, int month) async {
-    final sessions = await getSessionsByMonth(year, month);
-    return sessions.map((s) => s.date).toSet();
+    try {
+      final sessions = await getSessionsByMonth(year, month);
+      return sessions.map((s) => s.date).toSet();
+    } catch (e) {
+      debugPrint('Error getting dates with sessions: $e');
+      return {};
+    }
   }
 
   /// Get a single session by ID
@@ -87,15 +113,20 @@ class SessionRepository {
     // Return null on web (sqflite not supported)
     if (kIsWeb) return null;
     
-    final db = await _dbHelper.database;
-    final maps = await db.query(
-      DatabaseHelper.tableSessionRecords,
-      where: 'id = ?',
-      whereArgs: [id],
-      limit: 1,
-    );
-    if (maps.isEmpty) return null;
-    return SessionRecord.fromJson(maps.first);
+    try {
+      final db = await _dbHelper.database;
+      final maps = await db.query(
+        DatabaseHelper.tableSessionRecords,
+        where: 'id = ?',
+        whereArgs: [id],
+        limit: 1,
+      );
+      if (maps.isEmpty) return null;
+      return SessionRecord.fromJson(maps.first);
+    } catch (e) {
+      debugPrint('Error getting session by ID: $e');
+      return null;
+    }
   }
 
   /// Delete a session record
@@ -103,12 +134,16 @@ class SessionRepository {
     // Skip on web (sqflite not supported)
     if (kIsWeb) return;
     
-    final db = await _dbHelper.database;
-    await db.delete(
-      DatabaseHelper.tableSessionRecords,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    try {
+      final db = await _dbHelper.database;
+      await db.delete(
+        DatabaseHelper.tableSessionRecords,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      debugPrint('Error deleting session: $e');
+    }
   }
 
   /// Delete all session records
@@ -116,66 +151,80 @@ class SessionRepository {
     // Skip on web (sqflite not supported)
     if (kIsWeb) return;
     
-    final db = await _dbHelper.database;
-    await db.delete(DatabaseHelper.tableSessionRecords);
+    try {
+      final db = await _dbHelper.database;
+      await db.delete(DatabaseHelper.tableSessionRecords);
+    } catch (e) {
+      debugPrint('Error deleting all sessions: $e');
+    }
   }
 
   /// Get session statistics
   Future<SessionStatistics> getStatistics() async {
-    final sessions = await getAllSessions();
-    if (sessions.isEmpty) {
+    try {
+      final sessions = await getAllSessions();
+      if (sessions.isEmpty) {
+        return SessionStatistics.empty();
+      }
+
+      final totalSessions = sessions.length;
+      final totalDuration = sessions.fold<Duration>(
+        Duration.zero,
+        (sum, s) => sum + s.duration,
+      );
+      final averageDuration = Duration(
+        milliseconds: totalDuration.inMilliseconds ~/ totalSessions,
+      );
+
+      // Calculate most common hour
+      final hourCounts = <int, int>{};
+      for (final session in sessions) {
+        final hour = session.startTime.hour;
+        hourCounts[hour] = (hourCounts[hour] ?? 0) + 1;
+      }
+      final mostCommonHour = hourCounts.entries
+          .reduce((a, b) => a.value > b.value ? a : b)
+          .key;
+
+      // Calculate streak
+      final dates = sessions.map((s) => s.date).toSet().toList()..sort();
+      int currentStreak = 0;
+      int maxStreak = 0;
+      DateTime? lastDate;
+      for (final date in dates.reversed) {
+        if (lastDate == null || lastDate.difference(date).inDays == 1) {
+          currentStreak++;
+          maxStreak = currentStreak > maxStreak ? currentStreak : maxStreak;
+        } else {
+          currentStreak = 1;
+        }
+        lastDate = date;
+      }
+
+      return SessionStatistics(
+        totalSessions: totalSessions,
+        totalDuration: totalDuration,
+        averageDuration: averageDuration,
+        mostCommonHour: mostCommonHour,
+        longestStreak: maxStreak,
+        firstSessionDate: sessions.last.startTime,
+        lastSessionDate: sessions.first.startTime,
+      );
+    } catch (e) {
+      debugPrint('Error getting statistics: $e');
       return SessionStatistics.empty();
     }
-
-    final totalSessions = sessions.length;
-    final totalDuration = sessions.fold<Duration>(
-      Duration.zero,
-      (sum, s) => sum + s.duration,
-    );
-    final averageDuration = Duration(
-      milliseconds: totalDuration.inMilliseconds ~/ totalSessions,
-    );
-
-    // Calculate most common hour
-    final hourCounts = <int, int>{};
-    for (final session in sessions) {
-      final hour = session.startTime.hour;
-      hourCounts[hour] = (hourCounts[hour] ?? 0) + 1;
-    }
-    final mostCommonHour = hourCounts.entries
-        .reduce((a, b) => a.value > b.value ? a : b)
-        .key;
-
-    // Calculate streak
-    final dates = sessions.map((s) => s.date).toSet().toList()..sort();
-    int currentStreak = 0;
-    int maxStreak = 0;
-    DateTime? lastDate;
-    for (final date in dates.reversed) {
-      if (lastDate == null || lastDate.difference(date).inDays == 1) {
-        currentStreak++;
-        maxStreak = currentStreak > maxStreak ? currentStreak : maxStreak;
-      } else {
-        currentStreak = 1;
-      }
-      lastDate = date;
-    }
-
-    return SessionStatistics(
-      totalSessions: totalSessions,
-      totalDuration: totalDuration,
-      averageDuration: averageDuration,
-      mostCommonHour: mostCommonHour,
-      longestStreak: maxStreak,
-      firstSessionDate: sessions.last.startTime,
-      lastSessionDate: sessions.first.startTime,
-    );
   }
 
   /// Export all sessions as JSON-compatible list
   Future<List<Map<String, dynamic>>> exportSessions() async {
-    final sessions = await getAllSessions();
-    return sessions.map((s) => s.toJson()).toList();
+    try {
+      final sessions = await getAllSessions();
+      return sessions.map((s) => s.toJson()).toList();
+    } catch (e) {
+      debugPrint('Error exporting sessions: $e');
+      return [];
+    }
   }
 
   /// Import sessions from JSON-compatible list
